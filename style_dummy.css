@@ -1,0 +1,3085 @@
+.body{
+    background-color: #585858;
+  }
+  .bodyDevice{
+    display: none;
+  }
+  @media only screen and (min-width: 800px) {
+    .bodyDevice {
+        display: block;
+    }
+  }
+  body {
+    font-family: Arial, sans-serif;
+}
+body {
+  font-family: Arial, sans-serif;
+}
+#image{
+  width: 5px;
+}
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: black;
+  margin-left: 2px;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0% {
+      opacity: 1;
+  }
+  50% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+#Next-Step{
+  font:700 2.5vh'Roboto Slab', sans-serif;
+  color: white;
+  background-color: #4CAF50;
+  padding: 10px;
+  border-radius: 10px;
+  border: solid 0.5vh #4CAF50;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+#Next-Step:hover{
+  border: solid 0.5vh white;
+}
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFD000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+#overlay {
+  background-image: url('https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/GOYA%20Hintergrund.png'); /* Pfad zu deinem Bild */
+  background-size: cover; /* Passt das Bild proportional an den Bildschirm an */
+  background-position: center; /* Zentriert das Bild */
+  background-repeat: no-repeat; /* Verhindert, dass das Bild wiederholt wird */
+}
+#Start-Program{
+  font:700 2.5vh'Roboto Slab', sans-serif;
+  color: white;
+  background-color: #FFA000;
+  padding: 10px;
+  border-radius: 10px;
+  border: solid 0.5vh #FFA000;
+  position: absolute;
+  margin-top: 300px;
+  margin-left: 80%;
+  display: none;
+}
+#Start-Program:hover{
+  border: solid 0.5vh white;
+}
+#explanation-box {
+  background: transparent;
+  font-size: 18px;
+  color: black;
+  padding:5px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 65%;
+  height: 80%;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 1;
+}
+
+#error{
+  display: none;
+}
+#Icon-WAM {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+}
+
+#explanation-content {
+  font-size: 1.2em;
+  color: white;
+  overflow-y: auto;
+  flex-grow: 1; /* Add padding to avoid overlap with logo */
+  text-align: left;
+}
+
+#explanation-content img {
+  display: block;
+  margin: 10px auto;
+  max-width: 90%;
+  height: auto;
+}
+
+#next-button, #ok-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #FFD000;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  align-self: center;
+  
+}
+
+#next-button:hover, #ok-button:hover {
+  background-color: #FFD000;
+}
+
+
+  #Icon-WAM{
+    position: absolute;
+    margin-left: 85%;
+    width: 20vh;
+    height: 20vh;
+  }
+  
+  .Headline-Icon{
+    position: absolute;
+    width: 6vh;
+    color: grey;
+  }
+  .Headline-Icon:hover{
+    color: #FFD000;
+    fill: #FFD000;
+  }
+  .Upload{
+    left: 30vh;
+    margin-top: 0vh;
+  }
+  .SettingsObj{
+    width: 5.5vh;
+    margin-top: 0vh;
+    left: 39vh;
+  }
+  .Slicer{
+    left: 48vh;
+    margin-top: 0vh;
+  }
+  .GCode{
+    left: 56vh;
+    width: 5.5vh;
+    margin-top: 0vh;
+  }
+  .Play{
+    left: 2vh;
+    width: 6.5vh;
+    margin-top: 0.25vh;
+    fill: grey;
+  }
+  .StopMove{
+    left: 17vh;
+    width: 6.5vh;
+    margin-top: 0.25vh;
+    fill: grey;
+  }
+  .Connection{
+    left: 70%;
+    width: 6.5vh;
+    margin-top: 0.25vh;
+    fill: grey;
+  }
+  .Chatbot{
+    left: 65%;
+    width: 6vh;
+    margin-top: 0.25vh;
+    fill: grey;
+  }
+  .P-CurrentTag {
+    position: absolute;
+    bottom: 0;
+    color: grey;
+    font-size: 3.5vh;
+    margin-left: 10%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  #Editing-Bar{
+    position: absolute;
+    top: 10vh;
+  }
+  #Program-Items{
+    position: absolute;
+    margin-top: 10vh;
+    margin-left: 2vh;
+    color: white;
+    font: 700 'Roboto Slab', sans-serif;
+    display: none;
+  }
+  .Point{
+    color:#FFD000;
+    position: absolute;
+    margin-bottom: 2vh;
+    height: 5.5vh;
+    width: 5.5vh;
+    margin-left: 2rem;
+    left: 0%;
+    line-height: 5vh;
+    border-radius: 50%;
+    color: black;
+    background-color: #FFD000;
+    border: 0.5vh solid #FFD000;
+    font: 700 'Roboto Slab', sans-serif;
+    padding-top: 0rem;
+    padding-left: 0.5rem;
+    font-size: 2.25vh;
+    display: none;
+  }
+  .Line{
+    position: absolute;
+    margin-bottom: 2vh;
+    height: 4vh;
+    width: 8.5vh;
+    margin-left: 2vh;
+    left: 0%;
+    line-height: 4vh;
+    border-radius: 50%;
+    color: wheat;
+    background-color: #156289;
+    font: 700 'Roboto Slab', sans-serif;
+    padding-left: 1.2vh;
+    font-size: 2.25vh;
+    display: none;
+  }
+  .Function{
+    position: absolute;
+    margin-bottom: 2vh;
+    height: 4vh;
+    width: 8.5vh;
+    margin-top: -10vh;
+    margin-left: 2vh;
+    margin-bottom: 10vh;
+    color: #FFD000;
+    font: 700 'Roboto Slab', sans-serif;
+    padding-left: 1.2vh;
+    font-size: 2.25vh;
+    display: none;
+  }
+  .FlowChart{
+    color:#FFD000;
+    position: absolute;
+    height: 3.1rem;
+    width: 3.1rem;
+    top: 4rem;
+    left: 4rem;
+    border-radius: 50%;
+    color: black;
+    background-color: #FFD000;
+    font: 700 1.5rem 'Roboto Slab', sans-serif;
+    font-size: 1.5rem;
+    align-items: center;
+    padding: 0.6rem;
+    float:none;
+    display: none;
+  }
+  .Arrow-Down{
+    position: absolute;
+    color: white;
+    left: 4.5rem;
+    display: none;
+  }
+  .choicePoint{
+    background-color: grey;
+    height: 6vh;
+    margin-left: 2.25vh;
+    width: 60vh;
+    padding: 3vh;
+    margin-bottom: 2vh;
+    opacity: 85%;
+    display: none;
+  }
+  .choiceLine{
+    background-color: grey;
+    height: 5vh;
+    width: 60vh;
+    margin-left: 2.25vh;
+    padding: 3vh;
+    margin-bottom: 2vh;
+    opacity: 85%;
+    display: none;
+  }
+  .ItemPoint{
+    background-color: yellow;
+    float: left;
+    position: relative;
+    margin-top: -3vh;
+    margin-left: -3vh;
+    margin-right: 3vh;
+    width: 5vh;
+    font: 700 2.25vh'Roboto Slab', sans-serif;
+    height: 6vh;
+    opacity: 100%;
+    padding-top: 1.75vh;
+    padding-left: 1vh;
+    display: none;
+  }
+  .ItemPosX{
+    background-color: #343a40;
+    float: left;
+    color: white;
+    border: solid 0.2vh white;
+    position: relative;
+    margin-top: -3vh;
+    margin-left: -3vh;
+    margin-right: 3vh;
+    width: 8.35vh;
+    font: 700 1.9vh'Roboto Slab', sans-serif;
+    height: 6vh;
+    opacity: 95%;
+    text-align: center;
+    padding-top: 1vh;
+    display: none;
+  }
+  .ItemPosY{
+    background-color: #343a40;
+    float: left;
+    color: white;
+    border: solid 0.2vh white;
+    position: relative;
+    margin-top: -3vh;
+    margin-left: -3vh;
+    margin-right: 3vh;
+    width: 8.35vh;
+    font: 700 1.9vh'Roboto Slab', sans-serif;
+    height: 6vh;
+    text-align: center;
+    opacity: 90%;
+    padding-top: 1vh;
+    display: none;
+  }
+  .ItemPosZ{
+    background-color: #343a40;
+    float: left;
+    color: white;
+    border: solid 0.2vh white;
+    position: relative;
+    margin-top: -3vh;
+    margin-left: -3vh;
+    margin-right: 3vh;
+    width: 8.35vh;
+    font: 700 1.9vh'Roboto Slab', sans-serif;
+    height: 6vh;
+    text-align: center;
+    opacity: 90%;
+    padding-top: 1vh;
+    display: none;
+  }
+  .ItemLine{
+    background-color: #156289;
+    float: left;
+    position: relative;
+    margin-top: -3vh;
+    margin-left: -3vh;
+    margin-right: 3vh;
+    width: 8vh;
+    font: 700 2.25vh'Roboto Slab', sans-serif;
+    height: 6vh;
+    opacity: 100%;
+    color: white;
+    padding: 1.5vh;
+    display: none;
+  }
+  .ItemVelocity{
+    background-color: green;
+    float: left;
+    color: white;
+    position: relative;
+    margin-top: -3vh;
+    margin-left: -3vh;
+    margin-right: 3vh;
+    width: 10vh;
+    font: 700 1.8vh'Roboto Slab', sans-serif;
+    height: 6vh;
+    opacity: 100%;
+    padding-left: 1.2vh;
+    padding-top: 0.75vh;
+    display: none;
+  }
+  .ItemAcceleration{
+    background-color: red;
+    float: left;
+    color: white;
+    position: relative;
+    margin-top: -3vh;
+    margin-left: -3vh;
+    margin-right: 3vh;
+    width: 12vh;
+    font: 700 1.8vh'Roboto Slab', sans-serif;
+    height: 6vh;
+    padding-top: 0.75vh;
+    padding-left: 0.5vh;
+    opacity: 100%;
+    display: none;
+  }
+  .ItemFunction1P{
+    background-color: #424242;
+    border-radius: 7.5%;
+    float: left;
+    color: white;
+    position: relative;
+    margin-top: -3vh;
+    margin-left: -3vh;
+    margin-right: 3vh;
+    width: 12vh;
+    font: 700 2.25vh'Roboto Slab', sans-serif;
+    height: 6vh;
+    border: solid 0.35vh #FFD000;
+    opacity: 100%;
+    display: none;
+  }
+  .Program-Elements{
+    position: absolute;
+    color: grey;
+    border: solid 0.25vh #FFD000;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+    letter-spacing: 0.2vh;
+    border-radius: 10% ;
+    padding: 0.5vh;
+  }
+  .Wait{
+    position: absolute;
+    top: 20vh;
+    left: 1vh;
+    height: 8vh;
+    width: 15vh;
+  }
+  .LoopStart{
+    position: absolute;
+    align-items: center;
+    top: 30vh;
+    left: 1vh;
+    width: 15vh;
+    padding: 1vh;
+  }
+  .LoopEnd{
+    position: absolute;
+    align-items: center;
+    top: 40vh;
+    left: 1vh;
+    width: 15vh;
+    padding: 1vh;
+  }
+  .Calculate{
+    position: absolute;
+    align-items: center;
+    top: 50vh;
+    left: 1vh;
+    width: 15vh;
+    padding: 1vh;
+  }
+  #Wait-Name{
+    position: absolute;
+    top: 2vh;
+    left: 6vh;
+  }
+  #LoopStart-Name{
+    position: absolute;
+    top: 0.75vh;
+    left: 6vh;
+  }
+  #LoopEnd-Name{
+    position: absolute;
+    top: 0.75vh;
+    left: 6vh;
+  }
+  /*=================Setting-Point=================*/
+  .Setting-PointBox{
+    position: absolute;
+    height: 35vh;
+    width: 50vh;
+    top: 15vh;
+    left: 75vh;
+    background-color: #424242;
+    opacity: 80%;
+    border: solid 0.5vh black;
+    display: none;
+  }
+  .Base-Point{
+    color: #FFD000;
+  }
+  #Base-PointBox{
+    position: absolute;
+    background-color: #424242;
+    border: none;
+    border-color: black;
+    color: white;
+    width: 15vh;
+    border: solid 0.1vh #FFD000;
+    font-size: 2vh;
+    margin-left: 2vh;
+    margin-bottom: 1.5vh;
+    font:700 2.5vh 'Roboto Slab', sans-serif;
+    outline: 0;
+  }
+  .Point-SettingName{
+    position: absolute;
+    background-color: #424242;
+    color: white;
+    height: 6vh;
+    width: 10vh;
+    border-right: solid 0.75vh #FFD000;
+    border-bottom: solid 0.75vh #FFD000;
+    font:700 4vh 'Roboto Slab', sans-serif;
+    padding-left: 2vh;
+    padding-top: 0.5vh;
+  }
+  .PointBase-Name{
+    display: none;
+  }
+  .Check-SettingPoint{
+    position: absolute;
+    left: 22.5vh;
+    top: 25vh;
+    color: black;
+  }
+  .Close-SettingPoint{
+    position: absolute;
+    left: 42vh;
+    top: 1vh;
+    color: black;
+  }
+  .SettingPoint-Input{
+    position: absolute;
+    top: 5vh;
+    left: 15vh;
+  }
+  .SettingPoint-Value{
+    background-color: #424242;
+    border: none;
+    border-color: black;
+    color: white;
+    width: 15vh;
+    border: solid 0.1vh #FFD000;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    font:700 2.5vh 'Roboto Slab', sans-serif;
+    outline: 0;
+  }
+  .SettingPoint-Value:focus{
+    background-color: #FFD000;
+    color: black;
+  }
+  /*=================Setting-Path==================*/
+  .Item-Setting{
+    position: absolute;
+    top: 1vh;
+    margin-left: 62vh;
+    color: white;
+  }
+  .Setting-Path{
+    position: absolute;
+    height: 40vh;
+    width: 70vh;
+    top: 55vh;;
+    background-color: #424242;
+    opacity: 70%;
+    margin-left: 80vh;
+    border: solid 0.5vh black;
+    display: none;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Path-SettingName{
+    position: absolute;
+    background-color: #424242;
+    color: white;
+    height: 6vh;
+    width: 10vh;
+    border-right: solid 0.75vh #156289;
+    border-bottom: solid 0.75vh #156289;
+    font:700 4vh 'Roboto Slab', sans-serif;
+    padding-left: 0.25vh;
+  }
+  /*===================================================*/
+  .Progress-Circle{
+    width: 25vh;
+    height: 25vh; /* as the half of the width */
+    position: absolute;
+    top: 2vh;
+    left: 10vh;
+    border-radius: 50%;
+    background-image: 
+    linear-gradient(120deg, #424242 50%,black 50%),
+    linear-gradient(0deg, black 50%, #424242 50%);
+    border: solid #424242 1.5vh;
+  }
+  .Inner-Circle{
+    width: 17vh;
+    height: 17vh;
+    border-radius: 50%;
+    opacity: 100%;
+    position: absolute;
+    left: 2.5vh;
+    top: 2.5vh;
+    border-radius: 50%;
+    background-color: black;
+    background-image: 
+    linear-gradient(180deg, transparent 50%, #424242 50%),
+    linear-gradient(0deg, #424242 50%, transparent 50%);
+  
+  }
+  .Circle-Value{
+    text-align: center;
+    padding-top: 0vh;
+    margin-top: 4vh;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: white;
+    background-color: transparent;
+  }
+  .Circle-Unit{
+    position: absolute;
+    width: 30vh;
+    height: 12vh;
+    background-color: #424242;
+    padding-top: 4.5vh;
+    text-align: center;
+    left: -6vh;
+    top: 8.5vh;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: white;
+  }
+  .slider {
+    position: absolute;
+    width: 22vh;
+    height: 2vh;
+    top: 10vh;
+    left: -2.5vh;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.6;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  .slider:hover {
+    opacity: 1;
+  }
+  .slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%; 
+    background: #156289;
+    cursor: pointer;
+  }
+  .slider::-moz-range-thumb {
+    width: 2.5vh;
+    height: 2.5vh;
+    border-radius: 50%;
+    border: solid black 0.75vh;
+    background: #156289;
+    cursor: pointer;
+  }
+  .Velocity{
+    top: 2.5vh;
+    left: 2.5vh;
+  }
+  .Acceleration{
+    top: 2.25vh;
+    left: 38vh;
+  }
+  .Check-SettingPath{
+    position: absolute;
+    color: #156289;
+    top: 30vh;
+    left: 60vh;
+  }
+  .Close-SettingPath{
+    color: #156289;
+    position: absolute;
+    left: 62vh;
+    top: 1vh;
+  }
+  /*========================================*/
+  #webgl {
+    display: block;
+    float: right;
+    background-color: #585858;
+  }
+  #Top-Tag {
+    display: none;
+    position: absolute;
+  }
+  #Graph{
+    margin-left: 77%;
+    position: absolute;
+    margin-top: 1vh;
+    color: grey;
+  }
+  #Graph:hover{
+    color:#FFD000
+  }
+  #Program{
+    margin-left: 77%;
+    position: absolute;
+    display: none;
+    margin-top: 1vh;
+    color: grey;
+  }
+  #Program:hover{
+    color:#FFD000
+  }
+  #Icons-Program-Box{
+    position: absolute;
+    left: 19vh;
+    margin-top: 16vh;
+    display: none;
+  }
+  .Icon-Point{
+    position: absolute;
+    display: none;
+    margin-top: 2vh;
+    margin-left: -2.25vh;
+    margin-bottom: 2vh;
+    color: white;
+  }
+  .Icon-Line{
+    position: absolute;
+    display: none;
+    margin-left: -2.25vh;
+    margin-top: 0vh;
+    color: white !important;
+  }
+  #Program-Window{
+    display: none;
+  }
+  #Program-Box{
+    position: absolute;
+    top: 35vh;
+    background-color: #343a40;
+    overflow-y: scroll;
+    width: 30vh;
+    margin-left: 2vh;
+    height: 55vh;
+    opacity: 85%;
+  }
+  .Close-ProgramBar{
+    position: absolute;
+    color: grey;
+    top: 8vh;
+    left: 30vh;
+  }
+  #Bigger-Ratio{
+    position: absolute;
+    display: block;
+    top: 30vh;
+    left: 20vh;
+    color: white;
+  }
+  #Smaller-Ratio{
+    position: absolute;
+    display: none;
+    top: 11vh;
+    left: 60vh;
+    color: white;
+  }
+  .Execute-Program{
+    position: absolute;
+    top: 1vh;
+    display: none;
+    left: 10vh;
+    color: white;
+  }
+  #Program-Bar{
+    display: none;
+  }
+  #Save{
+    margin-left: 80%;
+    position: absolute;
+    margin-top: 1vh;
+    color: grey;
+  }
+  #Save:hover{
+    color:#FFD000
+  }
+  
+  /*=========Program-Velocity==========================*/
+  .Parameter-Velocity{
+    position: absolute;
+    top: 10vh;
+    left: 2vh;
+    width: 30vh;
+  }
+  .Parameter-Acceleration{
+    position: absolute;
+    top: 16vh;
+    left: 2vh;
+    width: 30vh;
+  }
+  .Minus-ProgParameter{
+    position: absolute;
+    color: white;
+    left: 1.5vh;
+    top: 0.25vh;
+  }
+  .Plus-ProgParameter{
+    position: absolute;
+    left: 16vh;
+    color: white;
+    left: 15vh;
+    top: 0.25vh;
+  }
+  .progress{
+    position: absolute;
+    color: #FFD000;
+  }
+  .progress-bar{
+    background-color: grey;
+  }
+  .Parameter-Value{
+    position: absolute;
+    font: 700 2vh 'Roboto Slab', sans-serif;
+    left: 18.5vh;
+    top: 0.25vh;
+    color: white;
+  }
+  .Parameter-Name{
+    position: absolute;
+    top: -2.5vh;
+    left: 1vh;
+    font: 700 2vh 'Roboto Slab', sans-serif;
+    color: white;
+  }
+  .Tool-Program{
+    position: absolute;
+    top: 1vh;
+    left: 55vh;
+    color: #FFD000;
+  }
+  /*=================$BASE=================================*/
+  .Select-BaseBox{
+    position: absolute;
+    height: 35vh;
+    width: 50vh;
+    top: 55vh;
+    left: 75vh;
+    background-color: #424242;
+    opacity: 80%;
+    border: solid 0.5vh black;
+    display: block;
+  }
+  .Label-SelectBase{
+    position: absolute;
+    background-color: #424242;
+    color: white;
+    height: 7vh;
+    width: 10vh;
+    border-right: solid 0.75vh #008000;
+    border-bottom: solid 0.75vh #008000;
+    font:700 2.5vh 'Roboto Slab', sans-serif;
+    padding-left: 1vh;
+    padding-top: 0.25vh;
+  }
+  .Label-Base{
+    font:700 2.5vh 'Roboto Slab', sans-serif;
+    color: #008000;
+    margin-left: 4vh;
+    margin-bottom: 2vh;
+  }
+  .SelectBase-Input{
+    position: absolute;
+    top: 4vh;
+    left: 12vh;
+  }
+  .Base-Program{
+    position: absolute;
+    top: 1vh;
+    left: 85vh;
+    color: #008000;
+  }
+  .Base-SelectBox{
+    color: #008000;
+    margin-bottom: 2vh;
+  }
+  #Base-Select{
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+    color: #008000;
+    position: absolute;
+    top: 0.5vh;
+    width: 25vh;
+    margin-left: 2vh;
+    letter-spacing: 0.2vh;
+    color: grey;
+    background-color: #424242;
+    border: #424242;
+  }
+  .Base-Name{
+    display: none;
+  }
+  .Base-IconClose{
+    position: absolute;
+    left: 42vh;
+    top: 1vh;
+  }
+  .Base-IconClose:hover{
+    color: red;
+  }
+  .Base-IconCheck{
+    position: absolute;
+    left: 22vh;
+    top: 26vh;
+  }
+  .Base-IconCheck:hover{
+    color: cyan;
+  }
+  #Base-Box{
+    position: absolute;
+    background-color: #424242;
+    border: none;
+    border-color: black;
+    color: white;
+    width: 15vh;
+    left: 11vh;
+    border: solid 0.35vh #008000;
+    font-size: 2vh;
+    margin-left: -4vh;
+    margin-bottom: 1.5vh;
+    font:700 2.5vh 'Roboto Slab', sans-serif;
+    outline: 0;
+  }
+  .Base-Value{
+    background-color: #424242;
+    border: none;
+    border-color: black;
+    color: white;
+    width: 15vh;
+    border: solid 0.35vh #008000;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    font:700 2.5vh 'Roboto Slab', sans-serif;
+    outline: 0;
+  }
+  .Base-Value:focus{
+    background-color: #008000;
+    color: black;
+  }
+  
+  
+  
+  /*=====================================================*/
+  #Tool-Select{
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+    color: #FFD000;
+    position: absolute;
+    top: 0.5vh;
+    width: 20vh;
+    margin-left: 2vh;
+    letter-spacing: 0.2vh;
+    color: grey;
+    background-color: #424242;
+    border: #424242;
+  }
+  .Tool-Name{
+    display: none;
+  }
+  /*=========Current POSITION===========================*/
+  .P-CurrentTag {
+    position: absolute;
+    bottom: 0;
+    color: grey;
+    font-size: 3.5vh;
+    margin-left: 10%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
+  .X-CurrentTable,
+  .Y-CurrentTable,
+  .Z-CurrentTable,
+  .X-CurrentValue,
+  .Y-CurrentValue,
+  .Z-CurrentValue {
+    margin: 10px; /* Einstellbare Abstände zwischen den Elementen */
+  }
+  
+  /* Optional: Stile für die X-, Y- und Z-Positionselemente */
+  .X-CurrentTable,
+  .Y-CurrentTable,
+  .Z-CurrentTable {
+    font-weight: bold;
+  }
+  
+  /* Optional: Stile für die aktuellen Werte der Positionen */
+  .X-CurrentValue,
+  .Y-CurrentValue,
+  .Z-CurrentValue {
+    margin-left: 5px; /* Einstellbarer Abstand zwischen dem Label und dem Wert */
+  }
+  /*=========SD===========================*/
+  #Download-SD{
+    margin-left: 83%;
+    position: absolute;
+    margin-top: 1vh;
+    color: grey;
+  }
+  #Download-SD:hover{
+    color:#FFD000
+  }
+  #Upload-SD{
+    margin-left: 86%;
+    position: absolute;
+    margin-top: 1vh;
+    color: grey;
+  }
+  #Upload-SD:hover{
+    color:#FFD000
+  }
+  
+  /*===============================================*/
+  /******************Connect************************/
+  .Icon-Connect{
+    position: absolute;
+    margin-left: 90%;
+    margin-top: 1vh;
+    color: #FFD000;
+    text-align: center;
+    display: none;
+  }
+  .OutputField-Name{
+    font:700 1.3rem  'Roboto Slab', sans-serif;
+    color: #999;
+    text-align: center;
+  }
+  /*===========Mode========================*/
+  #Program-Mode{
+    margin-left: 20%;
+    position: absolute;
+    display: block;
+    margin-top: 1vh;
+    color: grey;
+  }
+  #Program-Mode:hover{
+    color:#FFD000
+  }
+  #Editing-Mode{
+    margin-left: 20%;
+    position: absolute;
+    display: none;
+    margin-top: 1vh;
+    color: grey;
+  }
+  #Editing-Mode:hover{
+    color:#FFD000
+  }
+  #AR-View{
+    color: grey;
+    position: absolute;
+    margin-top: 1vh;
+    margin-left: 63%;
+    display: none;
+  }
+  #AR-View:hover{
+    color:#FFD000
+  }
+  #Program-View{
+    position: absolute;
+    color: grey;
+    margin-left: 57%;
+    margin-top: 1vh;
+    display: none;
+  }
+  #Program-View:hover{
+    color:#FFD000
+  }
+  #Add-PointHeader{
+    position: absolute;
+    color: #FFD000;
+    margin-left: 57%;
+    margin-top: 0vh;
+    display: block;
+  }
+  #Add-LineHeader{
+    position: absolute;
+    color: #0d6efd;
+    margin-left: 60%;
+    margin-top: 0vh;
+    display: block;
+  }
+  /*==========================Controller=========================*/
+  .Controller-Box{
+    display: none;
+  }
+  #Controller-View{
+    margin-left: 5%;
+    position: absolute;
+    display: block;
+    margin-top: 0.5vh;
+    color: grey;
+    width: 5.5vh;
+    height: 5.5vh;
+  }
+  #Controller-View:hover{
+    color:#FFD000
+  }
+  .Controller-Box{
+    position: absolute;
+    right: 30vh;
+    top: 25vh;
+    opacity: 60%;
+    display: block;
+  }
+  .btn {
+    margin-top: 2.5vh;
+    background: none;
+    border: none;
+    line-height: 1;
+    font:700 120% 'Roboto Slab', sans-serif;
+    padding: 1.5% 1.5%;
+    letter-spacing: 0.05rem;
+  }
+  .dropdown{
+    margin-left: 5vh;
+  }
+  .Arrow {
+    border: solid grey;
+    border-width: 0 2vh 2vh 0;
+    display: inline-block;
+    padding: 2vh;
+  }
+  .Button-Left{
+    position: absolute;
+    top: 12.5vh;
+    left: -12vh;
+    height: 10vh;
+    width: 11vh;
+    border-radius: 2vh;
+    background-color: black;
+  }
+  .Button-Right{
+    position: absolute;
+    top: 12.5vh;
+    left: 36vh;
+    height: 10vh;
+    width: 11vh;
+    border-radius: 2vh;
+    background-color: black;
+    align-items: center;
+  }
+  .Button-Top{
+    position: absolute;
+    top: -11.5vh;
+    left: 12.5vh;
+    height: 11vh;
+    width: 10vh;
+    border-radius: 2vh;
+    background-color: black;
+  }
+  .Button-Down{
+    position: absolute;
+    top: 35.5vh;
+    left: 12.5vh;
+    height: 11vh;
+    width: 10vh;
+    border-radius: 2vh;
+    background-color: black;
+  }
+  .Button-Circle{
+    height: 35vh;
+    width: 35vh;
+    background-color: transparent;
+    border: solid 1vh white !important;
+    border-radius: 50%;
+  }
+  .Over:hover{
+    background-color: #FFD000;
+  }
+  .Right {
+    margin-top: 2vh;
+    margin-left: 2vh;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  .Left {
+    margin-top: 2vh;
+    margin-left: 3vh;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+  .Top {
+    margin-top: 3.25vh;
+    margin-left: 2.25vh;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  .Down {
+    margin-top: 2vh;
+    margin-left: 2.25vh;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+  /*========Coordinate system====================*/
+  .Coordniat-System{
+    position: absolute;
+    top: 2.5vh;
+    left: 5vh;
+  }
+  #Set-Point{
+    position: absolute;
+    background-color: #FFD000;
+    color: black;
+    top: 30vh;
+    left: -10vh;
+    font: 700 3vh 'Roboto Slab', sans-serif;
+    border: solid 0.75vh black;
+    letter-spacing: 0.2vh;
+  }
+  #Set-Base{
+    position: absolute;
+    background-color: #FFD000;
+    color: black;
+    top: 30vh;
+    left: 28vh;
+    font: 700 3vh 'Roboto Slab', sans-serif;
+    border: solid 0.75vh black;
+    letter-spacing: 0.2vh;
+  }
+  .Arrow-Horizontal{
+    position: absolute;
+    border: solid #008000;
+    border-width: 0 1vh 1vh 0;
+    display: inline-block;
+    left: 16vh;
+    top: 10vh;
+    padding: 1vh;
+    rotate: -45deg;
+  }
+  .Arrow-Verticel{
+    position: absolute;
+    border: solid rgb(255,0,0);
+    border-width: 0 1vh 1vh 0;
+    display: inline-block;
+    left: 7vh;
+    top: 1.25vh;
+    padding: 1vh;
+    rotate: -135deg;
+  }
+  .Rectangle-Verticel{
+    position: absolute;
+    left: 8vh;
+    top: 2vh;
+    height: 10vh;
+    width: 1vh;
+    background-color: rgb(255,0,0);
+  }
+  .Rectangle-Horizontal{
+    position: absolute;
+    left: 8vh;
+    top: 11vh;
+    height: 1vh;
+    width: 11vh;
+    background-color: #008000;
+  }
+  .Legend-Verticel{
+    position: absolute;
+    font:700 4vh 'Roboto Slab', sans-serif;
+    color: red;
+    left: 11vh;
+  }
+  .Legend-Horizontal{
+    position: absolute;
+    font:700 4vh 'Roboto Slab', sans-serif;
+    color: #008000;
+    top: 6vh;
+    left: 18vh;
+  }
+  .Plus-Value{
+    position: absolute;
+    left: 20vh;
+    top: 23vh;
+    color: white;
+  }
+  .Minus-Value{
+    position: absolute;
+    color: white;
+    left: 3vh;
+    top: 23vh;
+  }
+  .Icon-ControllMode{
+    position: absolute;
+    color: #FFD000;
+    top: 14vh;
+  }
+  .Legend-Mode{
+    position: absolute;
+    color: #FFD000;
+    font:700 2.75vh 'Roboto Slab', sans-serif;
+    height: 3vh;
+    width: 5vh;
+    top: 11.5vh;
+    left: 2.5vh;
+  }
+  .Controller-Mode{
+    color: #FFD000;
+    height: 2.5vh;
+    width: 10vh;
+  }
+  .Value-Controller{
+    position: absolute;
+    top: 18vh;
+    left: 3.5vh;
+  }
+  .Close-Controller{
+    position: absolute;
+    width: 5vh;
+    height: 5vh;
+    top: -10vh;
+    left: 25vh;
+    color: grey;
+  }
+  .Value-Controller{
+    position: absolute;
+    width: 0vh;
+    left: 3vh;
+  }
+  .Unit{
+    height: 3vh;
+    width: 10vh;
+  }
+  .Turn-Coordinate{
+    position: absolute;
+    color: #FFD000;
+    top: 5vh;
+  
+  }
+  /*=========Upload===========================*/
+  .Label-GraphSelect{
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: #FFD000;
+  }
+  #Upload-SelectBox{
+    position: absolute;
+    display: none;
+    top: 60%;
+    left: 82.5%;
+    width: 30vh;
+    background-color: transparent;
+  }
+  .form-select{
+    background: #343a40;
+  }
+  .Select-ValueUpload{
+    font:700 2vh 'Roboto Slab', sans-serif;
+    color: white;
+  }
+  .btnUpload {
+    background: none;
+    font:700 0.9rem 'Roboto Slab', sans-serif;
+    padding: 0.75% 0.75%;
+    letter-spacing: 0.05rem;
+  }
+  .btnClose {
+    background: none;
+    font:700 0.9rem 'Roboto Slab', sans-serif;
+    padding: 0.75% 0.75%;
+    letter-spacing: 0.05rem;
+  }
+  #Upload-Button{
+    position: absolute;
+    top: 99%;
+    width: 10vh;
+    left: 0%;
+  }
+  #CloseUpload-Button{
+    position: absolute;
+    top: 99%;
+    width: 8vh;
+    left: 35%;
+  }
+  /*=========Download===========================*/
+  #Download-SelectBox{
+    position: absolute;
+    display: none;
+    top: 60%;
+    left: 82.5%;
+    width: 30vh;
+    background-color: transparent;
+  }
+  .form-select{
+    background: #343a40;
+  }
+  .Select-ValueDownload{
+    font:700 2vh 'Roboto Slab', sans-serif;
+    color: white;
+  }
+  .btnDownload {
+    background: none;
+    font:700 0.9rem 'Roboto Slab', sans-serif;
+    padding: 0.75% 0.75%;
+    letter-spacing: 0.05rem;
+  }
+  .btnClose {
+    background: none;
+    font:700 0.9rem 'Roboto Slab', sans-serif;
+    padding: 0.75% 0.75%;
+    letter-spacing: 0.05rem;
+  }
+  #Download-Button{
+    position: absolute;
+    top: 99%;
+    width: 12vh;
+    left: 0%;
+  }
+  #CloseDownload-Button{
+    position: absolute;
+    top: 99%;
+    width: 8vh;
+    margin-left: 12vh;
+  }
+  /*=================$Button==========================*/
+  /*==================================================*/
+  .draw-border {
+    color: #FFD000;
+    border: solid 0.15rem #FFD000 !important;
+    -webkit-transition: color 0.25s 0.08333s;
+    transition: color 0.25s 0.08333s;
+    padding: 0.5em 0.5em;
+    position: relative;
+    margin-top: 1%;
+    margin-right: 1%;
+    float: left;
+    left: 2%;
+  }
+  .draw-border::before, .draw-border::after {
+    border: 0 solid transparent;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
+  }
+  .draw-border::before {
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+  }
+  .draw-border::after {
+    border-top-width: 0.15rem;
+    border-right-width: 4px;
+  }
+  .draw-border:hover {
+    color: #ffe593;
+  }
+  .draw-border:hover::before, .draw-border:hover::after {
+    border-color: #ffe593;
+    -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+  }
+  .draw-border:hover::before {
+    -webkit-transition-delay: 0s, 0s, 0.25s;
+            transition-delay: 0s, 0s, 0.25s;
+  }
+  .draw-border:hover::after {
+    -webkit-transition-delay: 0s, 0.25s, 0s;
+            transition-delay: 0s, 0.25s, 0s;
+  }
+  .btnMovements {
+    margin-top: 3.5vh;
+    background: none;
+    border: none;
+    line-height: 1.5;
+    font:700 1.15rem 'Roboto Slab', sans-serif;
+    padding: 0.50% 0.50%;
+    letter-spacing: 0.05rem;
+  }
+  
+  /*===========Import-Json============*/
+  #Import-Json{
+    border: solid 0.15rem #FFD000;
+    position: absolute;
+    margin-left: 75%;
+    margin-top: 70vh;
+    width: 45vh;
+    height: 8vh;
+    background-color:#343a40;
+    font:700 100% 'Roboto Slab', sans-serif;
+    display: none;
+  }
+  #Import-Button{
+    height: 5vh;
+    background-color: #343a40;
+    border: solid 0.15rem #FFD000;
+    margin-left: 2vh;
+    margin-top: 1vh;
+    color: white;
+    font:700 100% 'Roboto Slab', sans-serif;
+  }
+  #Import-Input{
+    height: 6vh;
+    margin-left: 2vh;
+    margin-top: 1.5vh;
+    color: #aaaaaa;
+    background-color:#343a40;
+    font:700 100% 'Roboto Slab', sans-serif;
+    border-color: transparent;
+  }
+  #Delete-JsonImport {
+    margin-top: 1.5vh;
+    margin-left: 0.5vh;
+    margin-right: 0.5vh;
+    color: white;
+  }
+  /*===========Export-Json============*/
+  #Export-Json{
+    border: solid 0.15rem #FFD000;
+    position: absolute;
+    margin-left: 75%;
+    margin-top: 70vh;
+    width: 45vh;
+    height: 8vh;
+    background-color:#343a40;
+    font:700 100% 'Roboto Slab', sans-serif;
+    display: none;
+  }
+  #inputGroupSelect04{
+    margin-top: 1vh;
+    margin-left: 2vh;
+    height: 5vh;
+    width: 20vh;
+    font:700 100% 'Roboto Slab', sans-serif;
+    background-color: #b1b1b1;
+    border: solid 0.1vh #FFD000;
+  }
+  #Export-ButtonStyle{
+    float: left;
+    align-content: center;
+    height: 5vh;
+    width: 10vh;
+    border: solid 0.1rem #FFD000;
+    margin-left: 25vh;
+    margin-top: -5vh;
+    color: white;
+    font:700 100% 'Roboto Slab', sans-serif;
+  }
+  #Export-Button{
+    width: 1vh;
+    height: 2vh;
+  }
+  #Delete-JsonExport {
+    margin-top: -6.5vh;
+    float: left;
+    margin-left: 38vh;
+    margin-right: 2vh;
+    color: white;
+  }
+  /*=======================================*/
+  /*************Dialog/Message=============*/
+  .modal{
+    color: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-content {
+    position:absolute;
+    margin-top:50%;
+    background-color:#343a40;
+    border: 0.3vh solid #FFD000;
+    color: white;
+    font-size: 2vh;
+  }
+  #Dialog-CloseFooter2{
+    background-color: #424242;
+    border: 0.1vh solid #FFD000;
+  }
+  #Dialog-CloseFooter{
+    background-color: #424242;
+    border: 0.1vh solid #FFD000;
+  
+  }
+  #Dialog-Save{
+    background-color: #424242;
+    border: 0.1vh solid #FFD000;
+  
+  }
+  #info{
+    display: none;
+  }
+  #warning{
+    display: none;
+  }
+  #success{
+    display: none;
+  }
+  #danger{
+    display: none;
+  }
+  
+  /*Forms=========================*/
+  .progress{
+    position: absolute;
+    width: 8vh;
+    height: 2.5vh;
+    top: 0.3vh;
+    left: 4.5vh;
+  }
+  .Forms{
+    position: absolute;
+    border: solid 0.05vh #FFD000;
+    background-color: transparent;
+    color: #FFD000;
+    width: 47.5vh;
+    height: 45vh;
+    top: 6vh;
+    margin-left: 76%;
+    display: block;
+    border-radius: 5%;
+  }
+  #Triangle-Symbol{
+    position: relative;
+    margin-top: 4vh;
+    margin-bottom: 5vh;
+    margin-left: 8vh;
+  }
+  #Square-Symbol{
+    position: relative;
+    margin-top: 6vh;
+    margin-bottom: 5vh;
+    margin-left: 15vh;
+  }
+  #Line-Symbol{
+    position: relative;
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+    margin-left: 10vh;
+  }
+  .Angle-Icon{
+    position:absolute;
+    margin-top: -2vh;
+    margin-right: 2.5vh;
+  }
+  
+  
+  /*=================================================*/
+  /*===========Triangle==============================*/
+  /*=================================================*/
+  .IndexTriangle-Form{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 1vh;
+    left: 1vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Point1-Triangle{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 32vh;
+    left: 4vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Point2-Triangle{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 32vh;
+    left: 38vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Transit-Triangle{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: red;
+    padding: 0.5vh;
+    top: 1vh;
+    left: 21vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Length-aTriangleSide{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: #FFD000;
+    padding: 0.5vh;
+    top: 14vh;
+    left: 32.5vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Length-bTriangleSide{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: #FFD000;
+    padding: 0.5vh;
+    top: 14vh;
+    left: 1vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Length-cTriangleSide{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: #FFD000;
+    padding: 0.5vh;
+    top: 33vh;
+    left: 16vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Alpha-Triangle{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: #FFD000;
+    padding: 0.5vh;
+    top: 25vh;
+    left: 14vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Beta-Triangle{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: #FFD000;
+    padding: 0.5vh;
+    top: 25vh;
+    left: 26vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Gamma-Triangle{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: #FFD000;
+    padding: 0.5vh;
+    top: 14vh;
+    left: 20vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Toggle-Triangle{
+    position: absolute;
+    border: 0.1rem solid #FFD000;
+    color: #FFD000;
+    padding: 0.5vh;
+    top: 2vh;
+    left: 37vh;
+    font: 700 1.9vh 'Roboto Slab', sans-serif;
+  }
+  #IconClose-Triangle{
+    position: absolute;
+    top: 38.5vh;
+    left: 30vh;
+  }
+  #IconCheck-Triangle{
+    position: absolute;
+    top: 38vh;
+    left: 12vh;
+  }
+  /*=================================================*/
+  /*===========Line==================================*/
+  /*=================================================*/
+  .IndexLine-Form{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 1vh;
+    left: 1vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Point1-Line{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 25vh;
+    left: 27vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Point2-Line{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 8vh;
+    left: 27vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Transit-Line{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: red;
+    padding: 0.5vh;
+    top: 16.5vh;
+    left: 27vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Length-P1Tr{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: #FFD000;
+    padding: 0.5vh;
+    top: 12vh;
+    left: 7vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Length-TrP2{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: #FFD000;
+    padding: 0.5vh;
+    top: 20.5vh;
+    left: 7vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  #IconClose-Line{
+    position: absolute;
+    top: 35.5vh;
+    left: 30vh;
+  }
+  #IconCheck-Line{
+    position: absolute;
+    top: 35vh;
+    left: 13vh;
+  }
+  /*=================================================*/
+  /*===========#Circle================================*/
+  /*=================================================*/
+  #Circle-Symbol{
+    position: relative;
+    margin-top: 6vh;
+    margin-bottom: 2vh;
+    margin-left: 13vh;
+  }
+  .IndexCircle-Form{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 1vh;
+    left: 1vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Point1-Circle{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 16vh;
+    left: 8vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Point2-Circle{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 16vh;
+    left: 38.5vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Transit-Circle{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: red;
+    padding: 0.5vh;
+    top: 1vh;
+    left: 23vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Length-RadiusCircle{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: #FFD000;
+    padding: 0.5vh;
+    top: 17vh;
+    left: 19vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Arrow-RadiusCircle{
+    position: absolute;
+    top: 8.5vh;
+    left: 18vh;
+  }
+  .Toggle-Circle{
+    position: absolute;
+    border: 0.1rem solid #FFD000;
+    color: #FFD000;
+    padding: 0.5vh;
+    top: 1vh;
+    left: 40vh;
+    font: 700 1.9vh 'Roboto Slab', sans-serif;
+  }
+  #IconClose-Circle{
+    position: absolute;
+    top: 35.5vh;
+    left: 30vh;
+  }
+  #IconCheck-Circle{
+    position: absolute;
+    top: 35vh;
+    left: 13vh;
+  }
+  /*=================================================*/
+  /*===========#Square================================*/
+  /*=================================================*/
+  .IndexSquare-Form{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 1vh;
+    left: 1vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Point1-Square{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 23vh;
+    left: 10.5vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Point2-Square{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 23vh;
+    left: 32vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Transit-Square{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    color: red;
+    padding: 0.5vh;
+    top: 2vh;
+    left: 32vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Length-ASquare{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 1.5vh;
+    left: 17vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Length-ASquare2{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 24vh;
+    left: 17vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Length-BSquare{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 13vh;
+    left: 0.5vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Length-BSquare2{
+    position: absolute;
+    border: 0.2vh solid #FFD000;
+    padding: 0.5vh;
+    top: 13vh;
+    left: 32.5vh;
+    font: 700 2.25vh 'Roboto Slab', sans-serif;
+  }
+  .Toggle-Square{
+    position: absolute;
+    border: 0.1rem solid #FFD000;
+    color: #FFD000;
+    padding: 0.5vh;
+    top: 1vh;
+    left: 40vh;
+    font: 700 1.9vh 'Roboto Slab', sans-serif;
+  }
+  #IconClose-Square{
+    position: absolute;
+    top: 32.5vh;
+    left: 30vh;
+  }
+  #IconCheck-Square{
+    position: absolute;
+    top: 32vh;
+    left: 13vh;
+  }
+  /*=================================================*/
+  
+  .Input-Forms{
+    background-color: #343a40;
+    border: none;
+    width: 20vh;
+    border-bottom: 0.2vh solid #FFD000;
+    font-size: 2vh;
+    margin-bottom: 1.5vh;
+    outline: 0;
+    margin-left: 6vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }  
+  .Input-Forms:focus{
+    border-bottom: 0.5vh solid #FFD000;
+  }
+  .Labels-Forms{
+    position: absolute;
+    color: #FFD000;
+    margin-left: 2vh;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+  }
+  .Plus-Tension{
+    position: absolute;
+    top: 0.3vh;
+    left: 13.5vh;
+  }
+  .Minus-Tension{
+    position: absolute;
+    top: 0.3vh;
+    left: 1.2vh;
+  }
+  #iconSwitch-Graph{
+    float: left;
+    position: absolute;
+    color: #FFD000;
+    display: none;
+    padding: 0.5vh;
+    top: 22vh;
+    left: 3vh;
+    border: solid 0.05vh #FFD000;
+  }
+  .P-Table{
+    border: solid 0.5vh gray;
+    display: block;
+    position: absolute;
+    padding: 0.5vh;
+    height: 4.5vh;
+    width: 15vh;
+    left: 3vh;
+    top: 1.5vh;
+    text-align: center;
+    float: left;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+    color: #FFD000;
+  }
+  .X-Table{
+    border: solid 0.5vh gray;
+    display: block;
+    position: absolute;
+    padding: 0.5vh;
+    height: 4.5vh;
+    width: 15vh;
+    left: 3vh;
+    top: 5.75vh;
+    text-align: center;
+    float: left;
+    color: white;
+    font:700 2vh 'Roboto Slab', sans-serif;
+  }
+  .Y-Table{
+    border: solid 0.5vh gray;
+    display: block;
+    position: absolute;
+    padding: 0.5vh;
+    margin-left: 0vh;
+    height: 4.5vh;
+    width: 15vh;
+    left: 3vh;
+    top: 10vh;
+    color: white;
+    text-align: center;
+    float: left;
+    font:700 2vh 'Roboto Slab', sans-serif;
+  
+  }
+  .Z-Table{
+    border: solid 0.5vh gray;
+    display:  block;
+    position: absolute;
+    padding: 0.5vh;
+    height: 4.5vh;
+    width: 15vh;
+    left: 3vh;
+    top: 14.25vh;
+    text-align: center;
+    float: left;
+    color: white;
+    font:700 2vh 'Roboto Slab', sans-serif;
+  }
+  .T-Transit{
+    border: solid 0.5vh gray;
+    display: block;
+    position: absolute;
+    padding: 0.5vh;
+    height: 4.5vh;
+    width: 15vh;
+    left: 17.75vh;
+    top: 1.5vh;
+    text-align: center;
+    float: left;
+    font: 700 2.5vh 'Roboto Slab', sans-serif;
+    color: red;
+  }
+  .X-Transit{
+    border: solid 0.5vh gray;
+    display: block;
+    position: absolute;
+    padding: 0.5vh;
+    height: 4.5vh;
+    width: 15vh;
+    left: 17.75vh;
+    top: 5.75vh;
+    text-align: center;
+    float: left;
+    color: white;
+    font:700 2vh 'Roboto Slab', sans-serif;
+  }
+  .Y-Transit{
+    border: solid 0.5vh gray;
+    display: block;
+    position: absolute;
+    padding: 0.5vh;
+    margin-left: 0vh;
+    height: 4.5vh;
+    width: 15vh;
+    left: 17.75vh;
+    top: 10vh;
+    color: white;
+    text-align: center;
+    float: left;
+    font:700 2vh 'Roboto Slab', sans-serif;
+  
+  }
+  .Z-Transit{
+    border: solid 0.5vh gray;
+    display:  block;
+    position: absolute;
+    padding: 0.5vh;
+    height: 4.5vh;
+    width: 15vh;
+    left: 17.75vh;
+    top: 14.25vh;
+    text-align: center;
+    float: left;
+    color: white;
+    font:700 2vh 'Roboto Slab', sans-serif;
+  
+  }
+  /*=====================GRAPH POINT=============================*/
+  .Icon-SwitchPage{
+    position: absolute;
+    color: white;
+    top: -9vh;
+    left: 21vh;
+    height: 3vh;
+    width: 3vh;
+  }
+  .Add-Point{
+    color: white;
+    margin-left: 54vh;
+    position: relative;
+    width: 4vh;
+    height: 4vh;
+    display: none;
+  }
+  .Point-Setting{
+    position: absolute;
+    color: white;
+    top: 0.5vh;
+    left: 51vh;
+    display: none;
+  }
+  .Add-SinglePoint{
+    color: #FFD000;
+    margin-left: 8vh;
+    margin-top: -10vh;
+    position: relative;
+    display: block;
+  }
+  .Generate-PointBox{
+    position: absolute;
+    height: 35vh;
+    width: 50vh;
+    top: 50%;
+    left: 75vh;
+    background-color: #424242;
+    opacity: 80%;
+    border: solid 0.5vh black;
+    display: none;
+  }
+  .P-IconCheck {
+    display: block; 
+    position: absolute;
+    top: 26vh;
+    left: 23vh;
+    height: 4vh;
+    width: 4vh;
+    color: black;
+  }
+  .P-IconClose {
+    display: block; 
+    position: absolute;
+    top: 1vh;
+    left: 40vh;
+    height: 4vh;
+    width: 4vh;
+    color: black;
+  }
+  .Label-PointBox{
+    font:700 2.5vh 'Roboto Slab', sans-serif;
+    color: #FFD000;
+    margin-left: 4vh;
+    margin-bottom: 2vh;
+  }
+  .Label-Point{
+    color: #FFD000;
+    font:700 2.75vh 'Roboto Slab', sans-serif;
+    margin-left: 2vh;
+  }
+  .SinglePoint-Value{
+    background-color: #424242;
+    border: none;
+    border-color: black;
+    color: white;
+    width: 15vh;
+    border: solid 0.1vh #FFD000;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    font:700 2.5vh 'Roboto Slab', sans-serif;
+    outline: 0;
+  }
+  .SinglePoint-Value:focus{
+    background-color: #FFD000;
+    color: black;
+  }
+  .Base-SinglePoint{
+    color: #FFD000;
+  }
+  #Base-SinglePointBox{
+    position: absolute;
+    background-color: #424242;
+    border: none;
+    border-color: black;
+    color: white;
+    width: 15vh;
+    border: solid 0.1vh #FFD000;
+    font-size: 2vh;
+    margin-left: 2vh;
+    margin-bottom: 1.5vh;
+    font:700 2.5vh 'Roboto Slab', sans-serif;
+    outline: 0;
+  }
+  .sPointBase-Name{
+    display: none;
+  }
+  #GR-Tag{
+    display: none;
+    position: absolute;
+    margin-top: 40vh;
+    left: 1vh;
+    top: 0vh;
+  }
+  #TextPoint-Invisible{
+    display: block;
+    position: absolute;
+    left: 1vh;
+    top: -4vh;
+    color: #FFD000;
+  }
+  #TextPoint-Visible{
+    display: block;
+    position: absolute;
+    left: 1vh;
+    top: -4vh;
+    color: #FFD000;
+  }
+  .P-GraphTable{
+    float: left;
+    border: solid 0.5vh gray;
+    padding: 0.5vh;
+    top: 0vh;
+    left: -1vh;
+    position: absolute;
+    font:700 2vh 'Roboto Slab', sans-serif;
+    color: #FFD000;
+    height: 4vh;
+    width: 6vh;
+    display: none;
+  
+  }
+  #X-TableLegend{
+    border: solid 0.5vh gray;
+    text-align: center;
+    padding: 0.25vh;
+    position: absolute;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: #FFD000;
+    top: -3.75vh;
+    margin-left: 5.5vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  #Y-TableLegend{
+    border: solid 0.5vh gray;
+    text-align: center;
+    padding: 0.25vh;
+    position: absolute;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: #FFD000;
+    top: -3.75vh;
+    margin-left: 17vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  #Z-TableLegend{
+    border: solid 0.5vh gray;
+    text-align: center;
+    padding: 0.25vh;
+    position: absolute;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: #FFD000;
+    top: -3.75vh;
+    margin-left: 28.5vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  #B-TableLegend{
+    border: solid 0.5vh gray;
+    text-align: center;
+    padding: 0.25vh;
+    position: absolute;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: #FFD000;
+    top: -3.75vh;
+    margin-left: 40vh;
+    height: 4vh;
+    width: 12vh;
+    display: block;
+  }
+  .X-GraphTable{
+    border: solid 0.5vh gray;
+    font: 700 1.75vh 'Roboto Slab', sans-serif;
+    color: white;
+    align-items: center;
+    position: absolute;
+    margin-left: 4.5vh;
+    padding: 0.5vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  .Y-GraphTable{
+    border: solid 0.5vh gray;
+    font: 700 1.75vh 'Roboto Slab', sans-serif;
+    color: white;
+    align-items: center;
+    position: absolute;
+    margin-left: 16vh;
+    padding: 0.5vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  .Z-GraphTable{
+    border: solid 0.5vh gray;
+    font: 700 1.75vh 'Roboto Slab', sans-serif;
+    color: white;
+    align-items: center;
+    position: absolute;
+    margin-left: 27.5vh;
+    padding: 0.5vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  .B-GraphTable{
+    border: solid 0.5vh gray;
+    font: 700 1.75vh 'Roboto Slab', sans-serif;
+    color: white;
+    align-items: center;
+    position: absolute;
+    margin-left: 39vh;
+    padding-left: 1.25vh;
+    padding-top: 0.5vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  
+  .P1,.P11,.P21{
+    position: absolute;
+    left:1vh;
+    top: 0vh;
+  }
+  .P2,.P12,.P22{
+    position: absolute;
+    left:1vh;
+    top: 3.75vh;
+  }
+  .P3,.P13,.P23{
+    position: absolute;
+    left:1vh;
+    top: 7.5vh;
+  }
+  .P4,.P14,.P24{
+    position: absolute;
+    left:1vh;
+    top: 11vh
+  }
+  .P5,.P15,.P25{
+    position: absolute;
+    left:1vh;
+    top: 14.75vh;
+  }
+  .P6,.P16,.P26{
+    position: absolute;
+    left:1vh;
+    top: 18.5vh;
+  }
+  .P7,.P17,.P27{
+    position: absolute;
+    left:1vh;
+    top: 22.25vh;
+  }
+  .P8,.P18,.P28{
+    position: absolute;
+    left:1vh;
+    top: 26vh;
+  }
+  .P9,.P19,.P29{
+    position: absolute;
+    left:1vh;
+    top: 29.75vh;
+  }
+  .P10,.P20,.P30{
+    position: absolute;
+    left:1vh;
+    top: 33.5vh;
+  }
+  
+  /*=====================GRAPH TRANSIT=============================*/
+  
+  
+  #TR-Tag{
+    display: none;
+    position: absolute;
+    margin-top: 40vh;
+    left: 1vh;
+    top: 0vh;
+  }
+  #TextTransit-Invisible{
+    display: block;
+    position: absolute;
+    left: 1vh;
+    top: -4vh;
+    color: red;
+  }
+  #TextTransit-Visible{
+    display: none;
+    position: absolute;
+    left: 1vh;
+    top: -4vh;
+    color: red;
+  }
+  .P-GraphTransit{
+    float: left;
+    border: solid 0.5vh gray;
+    padding: 0.5vh;
+    position: absolute;
+    font:700 2vh 'Roboto Slab', sans-serif;
+    color: red;
+    left: -1.75vh;
+    height: 4vh;
+    width: 8vh;
+    display: none;
+  }
+  #X-TransitLegend{
+    border: solid 0.5vh gray;
+    text-align: center;
+    padding: 0.25vh;
+    position: absolute;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: red;
+    top: -3.75vh;
+    margin-left: 6.75vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  #Y-TransitLegend{
+    border: solid 0.5vh gray;
+    text-align: center;
+    padding: 0.25vh;
+    position: absolute;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: red;
+    top: -3.75vh;
+    margin-left: 18.25vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  #Z-TransitLegend{
+    border: solid 0.5vh gray;
+    text-align: center;
+    padding: 0.25vh;
+    position: absolute;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: red;
+    top: -3.75vh;
+    margin-left: 29.75vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  .X-GraphTransit{
+    border: solid 0.5vh gray;
+    font: 700 1.75vh 'Roboto Slab', sans-serif;
+    color: white;
+    align-items: center;
+    position: absolute;
+    margin-left: 5.75vh;
+    padding: 0.5vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  .Y-GraphTransit{
+    border: solid 0.5vh gray;
+    font: 700 1.75vh 'Roboto Slab', sans-serif;
+    color: white;
+    align-items: center;
+    position: absolute;
+    margin-left: 17.25vh;
+    padding: 0.5vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  .Z-GraphTransit{
+    border: solid 0.5vh gray;
+    font: 700 1.75vh 'Roboto Slab', sans-serif;
+    color: white;
+    align-items: center;
+    position: absolute;
+    margin-left: 28.75vh;
+    padding: 0.5vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  
+  }
+  
+  .T1,.T11,.T21{
+    position: absolute;
+    left:1vh;
+    top: 0vh;
+  }
+  .T2,.T12,.T22{
+    position: absolute;
+    left:1vh;
+    top: 3.75vh;
+  }
+  .T3,.T13,.T23{
+    position: absolute;
+    left:1vh;
+    top: 7.5vh;
+  }
+  .T4,.T14,.T24{
+    position: absolute;
+    left:1vh;
+    top: 11.25vh;
+  }
+  .T5,.T15,.T25{
+    position: absolute;
+    left:1vh;
+    top: 15vh;
+  }
+  .T6,.T16,.T26{
+    position: absolute;
+    left:1vh;
+    top: 18.75vh;
+  }
+  .T7,.T17,.T27{
+    position: absolute;
+    left:1vh;
+    top: 22.5vh;
+  }
+  .T8,.T18,.T28{
+    position: absolute;
+    left:1vh;
+    top: 26.25vh;
+  }
+  .T9,.T19,.T29{
+    position: absolute;
+    left:1vh;
+    top: 30vh;
+  }
+  .T10,.T20,.T30{
+    position: absolute;
+    left:1vh;
+    top: 33.75vh;
+  }
+  
+  
+  /*=====================GRAPH LINE===============================*/
+  #L-Tag{
+    display: none;
+    position: absolute;
+    margin-top: 40vh;
+    left: 1vh;
+    top: 0vh;
+    color: #FFD000;
+  }
+  .Line-Modify{
+    position: absolute;
+    top: 0vh;
+    left: 57.75vh;
+    width: 4vh;
+    height: 4vh;
+    color: grey;
+    display: none;
+  }
+  .progress-bar{
+    background-color: grey;
+  }
+  .blue-Color{
+    color: #0d6efd !important;
+  }
+  .blue{
+    color: #FFD000;
+  }
+  .blue-Background{
+    background-color: #0d6efd !important;
+  }
+  .dropdown-menu{
+    background-color: #343a40;
+  }
+  #StartPoint-Name{
+    font:700 2.75vh 'Roboto Slab', sans-serif;
+  }
+  #EndPoint-Name{
+    font:700 2.75vh 'Roboto Slab', sans-serif;
+  }
+  .dropdown-StartLine{
+    font:700 2.75vh 'Roboto Slab', sans-serif;
+    color: grey;
+  }
+  .dropdown-StartLine:hover{
+    font:700 2.75vh 'Roboto Slab', sans-serif;
+    color: grey;
+  }
+  .dropdown-EndLine{
+    font:700 2.75vh 'Roboto Slab', sans-serif;
+    color: grey;
+  }
+  .dropdown-EndLine:hover{
+    font:700 2.75vh 'Roboto Slab', sans-serif;
+    color: grey;
+  }
+  .Add-Line{
+    color: white;
+    margin-left: 57vh;
+    position: relative;
+    width: 4vh;
+    height: 4vh;
+    display: none;
+  }
+  .Add-SingleLine{
+    color: #0d6efd;
+    margin-left: 8vh;
+    margin-top: -10vh;
+    position: relative;
+    display: block;
+  }
+  .SingleLine-Box{
+    display: none;
+    position: absolute;
+    color: #0d6efd;
+    left: 80vh;
+    width: 80vh;
+    top: 60%;
+    background-color: #424242;
+    opacity: 80%;
+    border: solid 0.5vh black;
+  }
+  .Check-SingleLine{
+    width: 4vh;
+    height: 4vh;
+  }
+  .Delete-SingeLine{
+    margin-left: 2vh;
+    width: 4vh;
+    height: 4vh;
+  }
+  #TextLine-Invisible{
+    display: block;
+    position: absolute;
+    left: 1vh;
+    top: -4vh;
+    color: #0d6efd;
+  }
+  #TextLine-Visible{
+    display: none;
+    position: absolute;
+    left: 1vh;
+    top: -4vh;
+    color: #0d6efd;
+  }
+  .Line-Circle{
+    position: absolute;
+    display: block;
+    margin-left: 0vh;
+    top: 0.1vh;
+    margin-bottom: 0vh;
+    color: white;
+  }
+  .Line-Square{
+    position: absolute;
+    display: block;
+    margin-left: 4vh;
+    top: 0.1vh;
+  }
+  .Line-Triangle{
+    position: absolute;
+    display: block;
+    margin-left: 8vh;
+    top: 0.1vh;
+  }
+  .Line-Lines{
+    position: absolute;
+    display: block;
+    margin-left: 12vh;
+    top: 0.1vh;
+  }
+  #X-LineLegend{
+    border: solid 0.5vh gray;
+    text-align: center;
+    padding: 0.25vh;
+    position: absolute;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: #0d6efd;
+    top: -3.75vh;
+    margin-left: 6.5vh;
+    height: 4vh;
+    width: 25vh;
+    display: none;
+  }
+  #Y-LineLegend{
+    border: solid 0.5vh gray;
+    text-align: center;
+    padding: 0.25vh;
+    position: absolute;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: #0d6efd;
+    top: -3.75vh;
+    margin-left: 31vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  #Z-LineLegend{
+    border: solid 0.5vh gray;
+    text-align: center;
+    padding: 0.25vh;
+    position: absolute;
+    font:700 2.25vh 'Roboto Slab', sans-serif;
+    color: #0d6efd;
+    top: -3.75vh;
+    margin-left: 42.5vh;
+    height: 4vh;
+    width: 15.75vh;
+    display: none;
+  }
+  .L-GraphLine{
+    float: left;
+    border: solid 0.5vh gray;
+    padding: 0.5vh;
+    position: absolute;
+    font:700 2vh 'Roboto Slab', sans-serif;
+    color: grey;
+    height: 4vh;
+    left:-1.5vh;
+    width: 7.5vh;
+    display: none;
+  }
+  .X-GraphLine{
+    border: solid 0.5vh gray;
+    font: 700 1.75vh 'Roboto Slab', sans-serif;
+    color: white;
+    align-items: center;
+    position: absolute;
+    margin-left: 5.5vh;
+    padding: 0.5vh;
+    height: 4vh;
+    width: 25vh;
+    display: none;
+  }
+  .Y-GraphLine{
+    border: solid 0.5vh gray;
+    font: 700 1.75vh 'Roboto Slab', sans-serif;
+    color: white;
+    text-align: center;
+    position: absolute;
+    margin-left: 30vh;
+    top: 0vh;
+    padding: 0.5vh;
+    height: 4vh;
+    width: 12vh;
+    display: none;
+  }
+  .Z-GraphLine{
+    border: solid 0.5vh gray;
+    font: 700 1.75vh 'Roboto Slab', sans-serif;
+    color: white;
+    align-items: center;
+    position: absolute;
+    margin-left: 41.5vh;
+    padding: 0.5vh;
+    height: 4vh;
+    width: 15.75vh;
+    display: none;
+  }
+  .L-Tension-Value{
+    font: 700 1.75vh 'Roboto Slab', sans-serif;
+    color: white;
+    align-items: center;
+    position: absolute;
+    margin-left: 16.5vh;
+    height: 2.5vh;
+    width: 10vh;
+    display: block;
+  }
+  .L1,.L11,.L21{
+    position: absolute;
+    left:1vh;
+    top: 0vh;
+  }
+  .L2,.L12,.L22{
+    position: absolute;
+    left:1vh;
+    top: 3.75vh;
+  }
+  .L3,.L13,.L23{
+    position: absolute;
+    left:1vh;
+    top: 7.5vh;
+  }
+  .L4,.L14,.L24{
+    position: absolute;
+    left:1vh;
+    top: 11.25vh;
+  }
+  .L5,.L15,.L25{
+    position: absolute;
+    left:1vh;
+    top: 15vh;
+  }
+  .L6,.L16,.L26{
+    position: absolute;
+    left:1vh;
+    top: 18.75vh;
+  }
+  .L7,.L17,.L27{
+    position: absolute;
+    left:1vh;
+    top: 22.5vh;
+  }
+  .L8,.L18,.L28{
+    position: absolute;
+    left:1vh;
+    top: 26.25vh;
+  }
+  .L9,.L19,.L29{
+    position: absolute;
+    left:1vh;
+    top: 30vh;
+  }
+  .L10,.L20,.L30{
+    position: absolute;
+    left:1vh;
+    top: 33.75vh;
+  }
+  /*=====================Chatbot===============================*/
+  #chat-container {
+    position: absolute;
+    border: solid cyan 2vh;
+    width: 600px;
+    top: 35%;
+    left: 30%;
+    border: 2px solid grey;
+    padding: 20px;
+    font-size: 20px;
+    color: white;
+    font: 700 'Roboto Slab', sans-serif;
+    display: none;
+  
+  }
+  
+  #chat-box {
+    height: 300px;
+    border: 3px solid cyan;
+    margin-bottom: 10px;
+    padding: 10px;
+    overflow-y: auto;
+    color: white;
+    background-color: grey;
+    font: 700 'Roboto Slab', sans-serif;
+  
+    opacity: 70%;
+  }
+  
+  #user-input {
+    width: calc(100% - 100px);
+    padding: 10px;
+    font-size: 18px;
+    background-color: grey;
+    font: 700 'Roboto Slab', sans-serif;
+    background-color: #585858;
+    border: solid #585858 2px;
+    color: white;
+  }
+  
+  #send-btn {
+    width: 90px;
+    padding: 10px;
+    color: white !important;
+    font: 700 'Roboto Slab', sans-serif;
+    background-color: #585858;
+    border: solid #585858 2px;
+  }
+  #Icon-WAMChat{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left: 82%;
+  }
+  .Close-Chatbot{
+    margin-left: 92.5%;
+    width: 45px;
+    margin-bottom: 5px;
+  }
+  .Close-Chatbot:hover{
+    color: red;
+  }
+  /* Mobile Content */
+  .bodyMobile {
+    width: 100%;
+    display: none;
+    background-color: #424242;
+  }
+  #AR-Button{
+    display: flex;
+    width: 100%;
+    height: 45px;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20vh;
+    color: white;
+    background-color: #424242;
+    border: 2px solid cyan;
+    font-size: 25px;
+    font:'Roboto Slab', sans-serif;
+  }
+  #Icon-WAMMobile{
+    display: flex;
+    height: 20vh;
+    justify-content: center;
+    align-items: middle;
+  }
+  
+  @media only screen and (min-width: 360px) and (max-width: 480px) {
+    .bodyMobile {
+      display: block;
+      background-color: #585858; /* Grüne Hintergrundfarbe für mobile Ansicht */
+      position: relative; /* Stellt einen Bezugspunkt für absolut positionierte Kind-Elemente her */
+      text-align: center; /* Zentriert den Inhalt horizontal */
+      min-height: 100vh; /* Mindesthöhe der mobilen Ansicht */
+    }
+  }
+#Slider-Container{
+  top: 30px;
+  left: 70%;
+  position: absolute;
+  display: none;
+}
+.slider-container{
+  margin-top: 25px;
+}
+#sliderGlue{
+  font-size: 25px;
+  color: white;
+  font: 700 'Roboto Slab', sans-serif;
+}
+#sliderVelocity{
+  font-size: 25px;
+  color: white;
+  font: 700 'Roboto Slab', sans-serif;
+  margin-top: 100px;
+}
+.Label-Slider{
+  font-size: 20px;
+  color: white;
+  font: 700 'Roboto Slab', sans-serif;
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px; /* Höhe des Sliders (Dicke) */
+  border-radius: 5px;
+  background: #ddd; /* Farbe der Schiene */
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+input[type="range"]:hover {
+  opacity: 1;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px; /* Breite des Daumens */
+  height: 25px; /* Höhe des Daumens */
+  border-radius: 50%; /* Runde Form des Daumens */
+  background-color: #FFD000; /* Farbe des Daumens */
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Für Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Schiene (Track) für Webkit-Browser */
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 10px; /* Höhe der Schiene */
+  background: cyan; /* Farbe der Schiene */
+  border-radius: 5px;
+}
+
+/* Schiene (Track) für Firefox */
+input[type="range"]::-moz-range-track {
+  height: 10px;
+  background: cyan;
+  border-radius: 5px;
+}
+
+  
+  
+  
+  
+  
