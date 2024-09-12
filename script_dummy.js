@@ -641,8 +641,6 @@ var _declarationJs = require("./dummy/BasicFunctions/declaration.js");
 var _calculatePathJs = require("./dummy/ProgramFunctions/calculatePath.js");
 var _selectSliderJs = require("./dummy/BasicFunctions/selectSlider.js");
 var _startProgramJs = require("./dummy/BasicFunctions/startProgram.js");
-(0, _loadMachineAxis3Js.loadMachine250Axis3)();
-(0, _loadToolJs.loadTool3)();
 let viewNumber = 0;
 let nameConnection = [];
 let counter = 0;
@@ -1011,6 +1009,8 @@ function main() {
     //updateSplineOutline();
     });
     update(); //Update der Szene
+    (0, _loadMachineAxis3Js.loadMachine250Axis3)();
+    (0, _loadToolJs.loadTool3)();
     return scene;
 }
 scene = main();
@@ -34583,7 +34583,7 @@ function loadMachine250Axis3() {
     // Load a glTF resource
     let loadergltf = new (0, _gltfloaderJs.GLTFLoader)();
     const dracoLoader = new (0, _dracoloaderJs.DRACOLoader)();
-    dracoLoader.setDecoderPath("../../lib/jsm/libs/draco/gltf/");
+    dracoLoader.setDecoderPath("https://cdn.jsdelivr.net/gh/mrdoob/three.js@dev/examples/jsm/libs/draco/gltf/");
     loadergltf.setDRACOLoader(dracoLoader);
     loadergltf.load(// resource URL
     "https://cdn.jsdelivr.net/gh/JaPe94/myCode@main/linearAxis250.glb", // called when the resource is loaded
@@ -38092,7 +38092,7 @@ function loadTool3() {
     let loadergltf = new (0, _gltfloaderJs.GLTFLoader)();
     // Load a glTF resource
     loadergltf.load(// resource URL
-    "https://cdn.jsdelivr.net/gh/JaPe94/myCode@main/dispenser1.glb", // called when the resource is loaded
+    "https://cdn.jsdelivr.net/gh/mrdoob/three.js@dev/examples/jsm/libs/draco/gltf/", // called when the resource is loaded
     function(glb) {
         let tool;
         _scriptDummyJs.scene.add(glb.scene);
