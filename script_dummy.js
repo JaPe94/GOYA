@@ -644,7 +644,7 @@ var _startProgramJs = require("./dummy/BasicFunctions/startProgram.js");
 let viewNumber = 0;
 let nameConnection = [];
 let counter = 0;
-alert("hh");
+alert("hy1");
 for(let index = 1; index <= 29; index++)for(let i = 2; i <= 30; i++){
     nameConnection[counter] = "L" + index + "." + i;
     counter++;
@@ -34217,10 +34217,12 @@ var _fontLoaderJs = require("../../lib/jsm/loaders/FontLoader.js");
 var _textGeometryJs = require("../../lib/jsm/geometries/TextGeometry.js");
 var _machineDataJs = require("./BasicFunctions/machineData.js");
 var _addPointJs = require("./BasicFunctions/addPoint.js");
+var _controllerJs = require("./BasicFunctions/controller.js");
 async function onPointerUp() {
     _declarationJs.currentPosX[0].innerHTML = (0, _machineDataJs.machine).positionX.toFixed(2) + "mm";
     _declarationJs.currentPosY[0].innerHTML = (0, _machineDataJs.machine).positionY.toFixed(2) + "mm";
     _declarationJs.currentPosZ[0].innerHTML = (0, _machineDataJs.machine).positionZ.toFixed(2) + "mm";
+    (0, _controllerJs.stopMovements)();
     if (_scriptDummyJs.counterGeneratedPoints > -1) {
         // for (let index = 0; index <= MAIN.counterGeneratedTransitions; index++) {
         //     if(MAIN.savePosLines[index][5] != MAIN.length[index] && MAIN.length[index] != undefined){
@@ -34301,7 +34303,7 @@ async function onPointerUp() {
     if (_scriptDummyJs.onDownPosition.distanceTo(_scriptDummyJs.onUpPosition) === 0) transformControl.detach();
 }
 
-},{"../../build/three.module.js":"2SpE9","../script_dummy.js":"eiRHJ","./BasicFunctions/declaration.js":"3bUg0","../../lib/jsm/loaders/FontLoader.js":"fnvp8","../../lib/jsm/geometries/TextGeometry.js":"lUl4B","./BasicFunctions/machineData.js":"1Y1Z2","./BasicFunctions/addPoint.js":"k38BJ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1Y1Z2":[function(require,module,exports) {
+},{"../../build/three.module.js":"2SpE9","../script_dummy.js":"eiRHJ","./BasicFunctions/declaration.js":"3bUg0","../../lib/jsm/loaders/FontLoader.js":"fnvp8","../../lib/jsm/geometries/TextGeometry.js":"lUl4B","./BasicFunctions/machineData.js":"1Y1Z2","./BasicFunctions/addPoint.js":"k38BJ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./BasicFunctions/controller.js":"6whiV"}],"1Y1Z2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "machineLoad", ()=>machineLoad);
@@ -34466,7 +34468,350 @@ function addPointToGraph(counter, targetX, targetY, targetZ) {
 // DECL.pTag[MAIN.counterGeneratedPoints].style.display 	= 'block';
 }
 
-},{"../../../build/three.module.js":"2SpE9","../../script_dummy.js":"eiRHJ","../Helper/generateFunctions.js":"jrhvQ","./declaration.js":"3bUg0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"708yA":[function(require,module,exports) {
+},{"../../../build/three.module.js":"2SpE9","../../script_dummy.js":"eiRHJ","../Helper/generateFunctions.js":"jrhvQ","./declaration.js":"3bUg0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6whiV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "enableManualMove", ()=>enableManualMove);
+parcelHelpers.export(exports, "manualVel", ()=>manualVel);
+parcelHelpers.export(exports, "targetValueX", ()=>targetValueX);
+parcelHelpers.export(exports, "targetValueY", ()=>targetValueY);
+parcelHelpers.export(exports, "targetValueZ", ()=>targetValueZ);
+parcelHelpers.export(exports, "stopMovements", ()=>stopMovements);
+parcelHelpers.export(exports, "moveDirection", ()=>moveDirection);
+parcelHelpers.export(exports, "controllerView", ()=>controllerView);
+var _threeModuleJs = require("../../../build/three.module.js");
+var _scriptDummyJs = require("../../script_dummy.js");
+// import { offsetToolX, offsetToolY, offsetToolZ, 
+//         setTargetValueX,setTargetValueY,setTargetValueZ,
+//          targetValueX, targetValueY, targetValueZ } from '../ProgramFunctions/calculatePath.js';
+var _declarationJs = require("./declaration.js");
+var _generateFunctionsJs = require("../Helper/generateFunctions.js");
+var _machineDataJs = require("./machineData.js");
+var _moveCommandsJs = require("./moveCommands.js");
+let enableManualMove = false;
+let manualVel = parseInt(_declarationJs.controllerVel[0].innerHTML);
+let green = "#008000";
+let red = "#FF0000";
+let blue = "#0000FF";
+let axisHorizontal = "Y";
+let axisVerticel = "X";
+let buttonDirection, moveDirection;
+let controllerView = ()=>{
+    if (_declarationJs.controllerBox[0].style.display == "block") _declarationJs.controllerBox[0].style.display = "none";
+    else _declarationJs.controllerBox[0].style.display = "block";
+};
+//Set Point
+// DECL.stopMoveButton[0].onmousedown     = stopMovements;
+// Controller View                            
+// DECL.controllerView.onmousedown        = controllerView;
+// DECL.closeController[0].onmousedown    = controllerView;
+//Controller Mousedown Button Events
+_declarationJs.buttonDown[0].onmousedown = controllerMove;
+_declarationJs.buttonTop[0].onmousedown = controllerMove;
+_declarationJs.buttonRight[0].onmousedown = controllerMove;
+_declarationJs.buttonLeft[0].onmousedown = controllerMove;
+//Controller MoudeUp Button Events
+_declarationJs.buttonDown[0].onmouseup = stopMovements;
+_declarationJs.buttonTop[0].onmouseup = stopMovements;
+_declarationJs.buttonRight[0].onmouseup = stopMovements;
+_declarationJs.buttonLeft[0].onmouseup = stopMovements;
+//minus and plus Velocity
+_declarationJs.minusValue[0].onmousedown = changeVelocity;
+_declarationJs.plusValue[0].onmousedown = changeVelocity;
+//Turn Coordinate System
+_declarationJs.turnCoordinate[0].onmousedown = changeCoordinate;
+let targetValueX = 0;
+let targetValueY = 0;
+let targetValueZ = 0;
+let velX = 0;
+let velY = 0;
+let velZ = 0;
+function stopMovements() {
+    enableManualMove = false;
+}
+function controllerMove(event) {
+    enableManualMove = true;
+    targetValueX = (0, _machineDataJs.machine).positionX;
+    targetValueY = (0, _machineDataJs.machine).positionY;
+    targetValueZ = (0, _machineDataJs.machine).positionZ;
+    manualVel = parseInt(_declarationJs.controllerVel[0].innerHTML);
+    let velX = 0;
+    let velY = 0;
+    let velZ = 0;
+    let accelX = 0;
+    let accelY = 0;
+    let accelZ = 0;
+    axisHorizontal = _declarationJs.legendHorizontal[0].innerHTML;
+    axisVerticel = _declarationJs.legendVerticel[0].innerHTML;
+    buttonDirection = event.target.getAttribute("name");
+    //left
+    if (buttonDirection == "left") moveDirection = "-" + axisHorizontal;
+    //top
+    if (buttonDirection == "top") moveDirection = "+" + axisVerticel;
+    //right
+    if (buttonDirection == "right") moveDirection = "+" + axisHorizontal;
+    //down
+    if (buttonDirection == "down") moveDirection = "-" + axisVerticel;
+}
+function changeVelocity(event) {
+    let eventType = event.target.getAttribute("name");
+    manualVel = parseInt(_declarationJs.controllerVel[0].innerHTML);
+    if (eventType == "plus" && manualVel != 15) //Plus Button
+    _declarationJs.controllerVel[0].innerHTML = parseInt(manualVel + 1);
+    else if (eventType == "minus" && manualVel != 0) //Minus Button
+    _declarationJs.controllerVel[0].innerHTML = parseInt(manualVel - 1);
+    //DECL.controllerVel[0].innerHTML = eventType;
+    manualVel = _declarationJs.controllerVel[0].innerHTML;
+}
+function changeCoordinate() {
+    //if Verticel = X / Horizintal = Y
+    if (axisHorizontal == "Y" && axisVerticel == "X") {
+        axisHorizontal = "X";
+        _declarationJs.legendHorizontal[0].innerHTML = "X";
+        _declarationJs.legendHorizontal[0].style.color = red;
+        _declarationJs.rectangleHorizontal[0].style.backgroundColor = red;
+        _declarationJs.arrowHorizontal[0].style.borderColor = red;
+        axisVerticel = "Z";
+        _declarationJs.legendVerticel[0].innerHTML = "Z";
+        _declarationJs.legendVerticel[0].style.color = blue;
+        _declarationJs.rectangleVerticel[0].style.backgroundColor = blue;
+        _declarationJs.arrowVerticel[0].style.borderColor = blue;
+    //if Verticel = Z / Horizintal = X    
+    } else if (axisHorizontal == "X" && axisVerticel == "Z") {
+        axisHorizontal = "Y";
+        _declarationJs.legendHorizontal[0].innerHTML = "Y";
+        _declarationJs.legendHorizontal[0].style.color = green;
+        _declarationJs.rectangleHorizontal[0].style.backgroundColor = green;
+        _declarationJs.arrowHorizontal[0].style.borderColor = green;
+    // Set to default Value --> Verticel = Z / Horizintal = Z
+    } else {
+        axisVerticel = "X";
+        _declarationJs.legendVerticel[0].innerHTML = "X";
+        _declarationJs.legendVerticel[0].style.color = red;
+        _declarationJs.rectangleVerticel[0].style.backgroundColor = red;
+        _declarationJs.arrowVerticel[0].style.borderColor = red;
+    }
+}
+
+},{"../../../build/three.module.js":"2SpE9","../../script_dummy.js":"eiRHJ","./declaration.js":"3bUg0","../Helper/generateFunctions.js":"jrhvQ","./machineData.js":"1Y1Z2","./moveCommands.js":"kKGgk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kKGgk":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "stopMove", ()=>stopMove);
+parcelHelpers.export(exports, "move", ()=>move);
+parcelHelpers.export(exports, "moveAxisOnlineX", ()=>moveAxisOnlineX);
+parcelHelpers.export(exports, "moveAxisOnlineY", ()=>moveAxisOnlineY);
+parcelHelpers.export(exports, "moveAxisOnlineZ", ()=>moveAxisOnlineZ);
+parcelHelpers.export(exports, "moveAxisOfflineX", ()=>moveAxisOfflineX);
+parcelHelpers.export(exports, "moveAxisOfflineY", ()=>moveAxisOfflineY);
+parcelHelpers.export(exports, "moveAxisOfflineZ", ()=>moveAxisOfflineZ);
+parcelHelpers.export(exports, "getPositionAxisX", ()=>getPositionAxisX);
+parcelHelpers.export(exports, "getPositionAxisY", ()=>getPositionAxisY);
+parcelHelpers.export(exports, "getPositionAxisZ", ()=>getPositionAxisZ);
+parcelHelpers.export(exports, "setPositionAxisX", ()=>setPositionAxisX);
+parcelHelpers.export(exports, "setPositionAxisY", ()=>setPositionAxisY);
+parcelHelpers.export(exports, "setPositionAxisZ", ()=>setPositionAxisZ);
+parcelHelpers.export(exports, "setPositionTool", ()=>setPositionTool);
+parcelHelpers.export(exports, "setPositionAxisXOffline", ()=>setPositionAxisXOffline);
+parcelHelpers.export(exports, "setPositionAxisYOffline", ()=>setPositionAxisYOffline);
+parcelHelpers.export(exports, "setPositionAxisZOffline", ()=>setPositionAxisZOffline);
+//Convert to Flansch Pos
+parcelHelpers.export(exports, "convertFlanchPos", ()=>convertFlanchPos);
+var _scriptDummyJs = require("../../script_dummy.js");
+var _declarationJs = require("./declaration.js");
+var _loadMachineAxis3Js = require("./loadMachineAxis3.js");
+var _machineDataJs = require("./machineData.js");
+function stopMove() {
+// iMessage.Job             = "Stop";
+// console.log(iMessage);
+// sendMessage(iMessage);
+}
+function move(Job, X, Y, Z, velX, velY, velZ, accelX, accelY, accelZ) {
+// iMessage.Job             = Job;
+// iMessage.TargetX         = mmToSteps(X).toString();
+// iMessage.TargetY         = mmToSteps(Y).toString();
+// iMessage.TargetZ         = mmToSteps(Z).toString();
+// iMessage.AccelerationX   = accelX.toString();
+// iMessage.AccelerationY   = accelY.toString();
+// iMessage.AccelerationZ   = accelZ.toString();
+// iMessage.VelocityX       = mmToSteps(velX).toString();
+// iMessage.VelocityY       = mmToSteps(velY).toString();
+// iMessage.VelocityZ       = mmToSteps(velZ).toString();
+// iMessage.CurrentPosX     = mmToSteps(machine.positionX).toString();
+// iMessage.CurrentPosY     = mmToSteps(machine.positionY).toString();
+// iMessage.CurrentPosZ     = mmToSteps(machine.positionZ).toString();
+// console.log(iMessage);
+// sendMessage(iMessage);
+}
+async function moveAxisOnlineX(difference) {
+    let axisX = _scriptDummyJs.scene.getObjectByName("axisX" + (0, _machineDataJs.machine).size);
+    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
+    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
+    //Move Tool
+    let tool = _scriptDummyJs.scene.getObjectByName((0, _machineDataJs.machine).toolName);
+    for(let index = 0; index < 64; index++)if (axisX.children[index].name.indexOf("Flange") != -1) axisX.children[index].translateY(difference / 1000);
+    if (_scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size) != undefined) axisY.translateZ(difference);
+    if (_scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size) != undefined) {
+        if ((0, _machineDataJs.machine).numberAxis == 3) axisZ.translateZ(difference);
+        if ((0, _machineDataJs.machine).numberAxis == 2) axisZ.translateX(difference);
+    }
+// tool.translateZ(-difference);
+}
+async function moveAxisOnlineY(difference) {
+    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
+    //Move Tool
+    // let tool        = MAIN.scene.getObjectByName(machine.toolName);
+    for(let index = 0; index < 64; index++)if (axisY.children[index].name.indexOf("Flange") != -1) axisY.children[index].translateY(difference / 1000);
+// tool.translateX(difference);
+}
+async function moveAxisOnlineZ(difference) {
+    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
+    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
+    // let tool        = MAIN.scene.getObjectByName(machine.toolName);
+    for(let index = 0; index < 64; index++)if (axisZ.children[index].name.indexOf("Flange") != -1) axisZ.children[index].translateY(difference / 1000);
+    axisY.translateX(difference);
+// tool.translateY(-difference);
+}
+function moveAxisOfflineX(direction, vel, size) {
+    let axisX = _scriptDummyJs.scene.getObjectByName("axisX" + (0, _machineDataJs.machine).size);
+    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
+    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
+    //Move Tool
+    let tool = _scriptDummyJs.scene.getObjectByName((0, _machineDataJs.machine).toolName);
+    if (direction == "pos") {
+        for(let index = 0; index < 64; index++)if (axisX.children[index].name.indexOf("Flange") != -1) axisX.children[index].translateY(vel / 1000);
+        axisY.translateZ(vel);
+        axisZ.translateZ(vel);
+        tool.translateX(vel);
+    } else {
+        for(let index = 0; index < 64; index++)if (axisX.children[index].name.indexOf("Flange") != -1) axisX.children[index].translateY(-vel / 1000);
+        axisY.translateZ(-vel);
+        axisZ.translateZ(-vel);
+        tool.translateX(-vel);
+    }
+}
+function moveAxisOfflineY(direction, vel, size) {
+    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
+    //Move Tool
+    let tool = _scriptDummyJs.scene.getObjectByName((0, _machineDataJs.machine).toolName);
+    if (direction == "pos") {
+        for(let index = 0; index < 64; index++)if (axisY.children[index].name.indexOf("Flange") != -1) axisY.children[index].translateY(vel / 1000);
+        tool.translateY(vel);
+    } else {
+        for(let index = 0; index < 64; index++)if (axisY.children[index].name.indexOf("Flange") != -1) axisY.children[index].translateY(-vel / 1000);
+        tool.translateY(-vel);
+    }
+}
+function moveAxisOfflineZ(direction, vel, size) {
+    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
+    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
+    let tool = _scriptDummyJs.scene.getObjectByName((0, _machineDataJs.machine).toolName);
+    if (direction == "pos") {
+        for(let index = 0; index < 64; index++)if (axisZ.children[index].name.indexOf("Flange") != -1) axisZ.children[index].translateY(-vel / 1000);
+        axisY.translateX(-vel);
+        tool.translateZ(vel);
+    } else {
+        for(let index = 0; index < 64; index++)if (axisZ.children[index].name.indexOf("Flange") != -1) axisZ.children[index].translateY(vel / 1000);
+        axisY.translateX(vel);
+        tool.translateZ(-vel);
+    }
+}
+function getPositionAxisX(size) {
+    let axisX = _scriptDummyJs.scene.getObjectByName("axisX" + (0, _machineDataJs.machine).size);
+    let posX;
+    for(let index = 0; index < 64; index++)if (axisX.children[index].name.indexOf("Flange") != -1) posX = axisX.children[index].position.y;
+    posX = convertFlanchPos(posX, "X");
+    return posX;
+}
+function getPositionAxisY(size) {
+    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
+    let posY;
+    for(let index = 0; index < 64; index++)if (axisY.children[index].name.indexOf("Flange") != -1) posY = axisY.children[index].position.y;
+    posY = convertFlanchPos(posY, "Y");
+    return posY;
+}
+function getPositionAxisZ(size) {
+    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
+    let posZ;
+    for(let index = 0; index < 64; index++)if (axisZ.children[index].name.indexOf("Flange") != -1) posZ = axisZ.children[index].position.y;
+    posZ = convertFlanchPos(posZ, "Z");
+    return posZ;
+}
+function setPositionAxisX(pos) {
+    console.log(pos);
+    let migrationFactor = 1000;
+    let axisX = _scriptDummyJs.scene.getObjectByName("axisX" + (0, _machineDataJs.machine).size);
+    for(let index = 0; index < 64; index++)if (axisX.children[index].name.indexOf("Flange") != -1) axisX.children[index].position.y = (parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][0]) + parseFloat(pos)) / 1000;
+    if (_scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size) != undefined) {
+        if ((0, _machineDataJs.machine).numberAxis == 3) _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size).position.x = parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][0]) + parseFloat(pos) - 110;
+        if ((0, _machineDataJs.machine).numberAxis == 2) _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size).position.x = parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][0]) + parseFloat(pos) - 20;
+    }
+    if (_scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size) != undefined) _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size).position.x = parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][0]) + parseFloat(pos) - 60;
+}
+function setPositionAxisY(pos) {
+    console.log(pos);
+    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
+    for(let index = 0; index < 64; index++)if (axisY.children[index].name.indexOf("Flange") != -1) axisY.children[index].position.y = (parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][0]) + parseFloat(pos)) / 1000;
+}
+function setPositionAxisZ(pos) {
+    console.log(pos);
+    let migrationFactor = 1000;
+    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
+    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
+    //let posX       =  pos + limitSwitchOffset[0][0] / 1000
+    for(let index = 0; index < 64; index++)if (axisZ.children[index].name.indexOf("Flange") != -1) axisZ.children[index].position.y = -(parseFloat(pos) - parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[(0, _machineDataJs.machine).sizeType][4])) / 1000;
+    if (_scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size) != undefined) axisY.position.z = parseFloat(parseFloat(pos) - (0, _loadMachineAxis3Js.limitSwitchOffset)[(0, _machineDataJs.machine).sizeType][2] + 15);
+}
+function setPositionTool() {
+    let tool = _scriptDummyJs.scene.getObjectByName((0, _machineDataJs.machine).toolName);
+    tool.position.x = getPositionAxisX((0, _machineDataJs.machine).size);
+    tool.position.y = getPositionAxisY((0, _machineDataJs.machine).size);
+    tool.position.z = getPositionAxisZ((0, _machineDataJs.machine).size);
+    if ((0, _machineDataJs.machine).toolName == "Tool3") {
+        tool.position.x += -20;
+        tool.position.y += 40;
+        tool.position.z += 255;
+    }
+}
+function setPositionAxisXOffline(pos) {
+    console.log(pos);
+    let migrationFactor = 1000;
+    let axisX = _scriptDummyJs.scene.getObjectByName("axisX" + (0, _machineDataJs.machine).size);
+    for(let index = 0; index < 64; index++)if (axisX.children[index].name.indexOf("Flange") != -1) axisX.children[index].position.y = (parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][0]) + parseFloat(pos)) / 1000;
+}
+function setPositionAxisYOffline(pos) {
+    console.log(pos);
+    let migrationFactor = 1000;
+    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
+    for(let index = 0; index < 64; index++)if (axisY.children[index].name.indexOf("Flange") != -1) axisY.children[index].position.y = (parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][2]) + parseFloat(pos)) / 1000;
+}
+function setPositionAxisZOffline(pos) {
+    console.log(pos);
+    let migrationFactor = 1000;
+    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
+    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
+    //let posX       =  pos + limitSwitchOffset[0][0] / 1000
+    for(let index = 0; index < 64; index++)if (axisZ.children[index].name.indexOf("Flange") != -1) axisZ.children[index].position.y = -(parseFloat(pos) - parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[(0, _machineDataJs.machine).sizeType][4])) / 1000;
+}
+function convertFlanchPos(pos, Axis) {
+    let flanchPos;
+    let migrationFactor = 1000;
+    switch(Axis){
+        case "X":
+            flanchPos = pos * migrationFactor - (0, _loadMachineAxis3Js.limitSwitchOffset)[(0, _machineDataJs.machine).sizeType][0];
+            break;
+        case "Y":
+            flanchPos = pos * migrationFactor - (0, _loadMachineAxis3Js.limitSwitchOffset)[(0, _machineDataJs.machine).sizeType][2];
+            break;
+        case "Z":
+            flanchPos = -(pos * migrationFactor) + (0, _loadMachineAxis3Js.limitSwitchOffset)[(0, _machineDataJs.machine).sizeType][4];
+            break;
+        default:
+            break;
+    }
+    return flanchPos;
+}
+
+},{"../../script_dummy.js":"eiRHJ","./declaration.js":"3bUg0","./loadMachineAxis3.js":"708yA","./machineData.js":"1Y1Z2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"708yA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "sizeType", ()=>sizeType);
@@ -38093,7 +38438,7 @@ function loadTool3() {
     let loadergltf = new (0, _gltfloaderJs.GLTFLoader)();
     // Load a glTF resource
     loadergltf.load(// resource URL
-    "https://cdn.jsdelivr.net/gh/mrdoob/three.js@dev/examples/jsm/libs/draco/gltf/", // called when the resource is loaded
+    "https://cdn.jsdelivr.net/gh/JaPe94/myCode@main/dispenser1.glb", // called when the resource is loaded
     function(glb) {
         let tool;
         _scriptDummyJs.scene.add(glb.scene);
@@ -38158,350 +38503,7 @@ function loadPart() {
     });
 }
 
-},{"../../../build/three.module.js":"2SpE9","./declaration.js":"3bUg0","../../script_dummy.js":"eiRHJ","../Helper/generateFunctions.js":"jrhvQ","../../../lib/jsm/loaders/GLTFLoader.js":"ceBpP","../../../lib/jsm/loaders/DRACOLoader.js":"ifF80","./moveCommands.js":"kKGgk","./machineData.js":"1Y1Z2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kKGgk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "stopMove", ()=>stopMove);
-parcelHelpers.export(exports, "move", ()=>move);
-parcelHelpers.export(exports, "moveAxisOnlineX", ()=>moveAxisOnlineX);
-parcelHelpers.export(exports, "moveAxisOnlineY", ()=>moveAxisOnlineY);
-parcelHelpers.export(exports, "moveAxisOnlineZ", ()=>moveAxisOnlineZ);
-parcelHelpers.export(exports, "moveAxisOfflineX", ()=>moveAxisOfflineX);
-parcelHelpers.export(exports, "moveAxisOfflineY", ()=>moveAxisOfflineY);
-parcelHelpers.export(exports, "moveAxisOfflineZ", ()=>moveAxisOfflineZ);
-parcelHelpers.export(exports, "getPositionAxisX", ()=>getPositionAxisX);
-parcelHelpers.export(exports, "getPositionAxisY", ()=>getPositionAxisY);
-parcelHelpers.export(exports, "getPositionAxisZ", ()=>getPositionAxisZ);
-parcelHelpers.export(exports, "setPositionAxisX", ()=>setPositionAxisX);
-parcelHelpers.export(exports, "setPositionAxisY", ()=>setPositionAxisY);
-parcelHelpers.export(exports, "setPositionAxisZ", ()=>setPositionAxisZ);
-parcelHelpers.export(exports, "setPositionTool", ()=>setPositionTool);
-parcelHelpers.export(exports, "setPositionAxisXOffline", ()=>setPositionAxisXOffline);
-parcelHelpers.export(exports, "setPositionAxisYOffline", ()=>setPositionAxisYOffline);
-parcelHelpers.export(exports, "setPositionAxisZOffline", ()=>setPositionAxisZOffline);
-//Convert to Flansch Pos
-parcelHelpers.export(exports, "convertFlanchPos", ()=>convertFlanchPos);
-var _scriptDummyJs = require("../../script_dummy.js");
-var _declarationJs = require("./declaration.js");
-var _loadMachineAxis3Js = require("./loadMachineAxis3.js");
-var _machineDataJs = require("./machineData.js");
-function stopMove() {
-// iMessage.Job             = "Stop";
-// console.log(iMessage);
-// sendMessage(iMessage);
-}
-function move(Job, X, Y, Z, velX, velY, velZ, accelX, accelY, accelZ) {
-// iMessage.Job             = Job;
-// iMessage.TargetX         = mmToSteps(X).toString();
-// iMessage.TargetY         = mmToSteps(Y).toString();
-// iMessage.TargetZ         = mmToSteps(Z).toString();
-// iMessage.AccelerationX   = accelX.toString();
-// iMessage.AccelerationY   = accelY.toString();
-// iMessage.AccelerationZ   = accelZ.toString();
-// iMessage.VelocityX       = mmToSteps(velX).toString();
-// iMessage.VelocityY       = mmToSteps(velY).toString();
-// iMessage.VelocityZ       = mmToSteps(velZ).toString();
-// iMessage.CurrentPosX     = mmToSteps(machine.positionX).toString();
-// iMessage.CurrentPosY     = mmToSteps(machine.positionY).toString();
-// iMessage.CurrentPosZ     = mmToSteps(machine.positionZ).toString();
-// console.log(iMessage);
-// sendMessage(iMessage);
-}
-async function moveAxisOnlineX(difference) {
-    let axisX = _scriptDummyJs.scene.getObjectByName("axisX" + (0, _machineDataJs.machine).size);
-    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
-    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
-    //Move Tool
-    let tool = _scriptDummyJs.scene.getObjectByName((0, _machineDataJs.machine).toolName);
-    for(let index = 0; index < 64; index++)if (axisX.children[index].name.indexOf("Flange") != -1) axisX.children[index].translateY(difference / 1000);
-    if (_scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size) != undefined) axisY.translateZ(difference);
-    if (_scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size) != undefined) {
-        if ((0, _machineDataJs.machine).numberAxis == 3) axisZ.translateZ(difference);
-        if ((0, _machineDataJs.machine).numberAxis == 2) axisZ.translateX(difference);
-    }
-// tool.translateZ(-difference);
-}
-async function moveAxisOnlineY(difference) {
-    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
-    //Move Tool
-    // let tool        = MAIN.scene.getObjectByName(machine.toolName);
-    for(let index = 0; index < 64; index++)if (axisY.children[index].name.indexOf("Flange") != -1) axisY.children[index].translateY(difference / 1000);
-// tool.translateX(difference);
-}
-async function moveAxisOnlineZ(difference) {
-    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
-    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
-    // let tool        = MAIN.scene.getObjectByName(machine.toolName);
-    for(let index = 0; index < 64; index++)if (axisZ.children[index].name.indexOf("Flange") != -1) axisZ.children[index].translateY(difference / 1000);
-    axisY.translateX(difference);
-// tool.translateY(-difference);
-}
-function moveAxisOfflineX(direction, vel, size) {
-    let axisX = _scriptDummyJs.scene.getObjectByName("axisX" + (0, _machineDataJs.machine).size);
-    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
-    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
-    //Move Tool
-    let tool = _scriptDummyJs.scene.getObjectByName((0, _machineDataJs.machine).toolName);
-    if (direction == "pos") {
-        for(let index = 0; index < 64; index++)if (axisX.children[index].name.indexOf("Flange") != -1) axisX.children[index].translateY(vel / 1000);
-        axisY.translateZ(vel);
-        axisZ.translateZ(vel);
-        tool.translateX(vel);
-    } else {
-        for(let index = 0; index < 64; index++)if (axisX.children[index].name.indexOf("Flange") != -1) axisX.children[index].translateY(-vel / 1000);
-        axisY.translateZ(-vel);
-        axisZ.translateZ(-vel);
-        tool.translateX(-vel);
-    }
-}
-function moveAxisOfflineY(direction, vel, size) {
-    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
-    //Move Tool
-    let tool = _scriptDummyJs.scene.getObjectByName((0, _machineDataJs.machine).toolName);
-    if (direction == "pos") {
-        for(let index = 0; index < 64; index++)if (axisY.children[index].name.indexOf("Flange") != -1) axisY.children[index].translateY(vel / 1000);
-        tool.translateY(vel);
-    } else {
-        for(let index = 0; index < 64; index++)if (axisY.children[index].name.indexOf("Flange") != -1) axisY.children[index].translateY(-vel / 1000);
-        tool.translateY(-vel);
-    }
-}
-function moveAxisOfflineZ(direction, vel, size) {
-    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
-    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
-    let tool = _scriptDummyJs.scene.getObjectByName((0, _machineDataJs.machine).toolName);
-    if (direction == "pos") {
-        for(let index = 0; index < 64; index++)if (axisZ.children[index].name.indexOf("Flange") != -1) axisZ.children[index].translateY(-vel / 1000);
-        axisY.translateX(-vel);
-        tool.translateZ(vel);
-    } else {
-        for(let index = 0; index < 64; index++)if (axisZ.children[index].name.indexOf("Flange") != -1) axisZ.children[index].translateY(vel / 1000);
-        axisY.translateX(vel);
-        tool.translateZ(-vel);
-    }
-}
-function getPositionAxisX(size) {
-    let axisX = _scriptDummyJs.scene.getObjectByName("axisX" + (0, _machineDataJs.machine).size);
-    let posX;
-    for(let index = 0; index < 64; index++)if (axisX.children[index].name.indexOf("Flange") != -1) posX = axisX.children[index].position.y;
-    posX = convertFlanchPos(posX, "X");
-    return posX;
-}
-function getPositionAxisY(size) {
-    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
-    let posY;
-    for(let index = 0; index < 64; index++)if (axisY.children[index].name.indexOf("Flange") != -1) posY = axisY.children[index].position.y;
-    posY = convertFlanchPos(posY, "Y");
-    return posY;
-}
-function getPositionAxisZ(size) {
-    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
-    let posZ;
-    for(let index = 0; index < 64; index++)if (axisZ.children[index].name.indexOf("Flange") != -1) posZ = axisZ.children[index].position.y;
-    posZ = convertFlanchPos(posZ, "Z");
-    return posZ;
-}
-function setPositionAxisX(pos) {
-    console.log(pos);
-    let migrationFactor = 1000;
-    let axisX = _scriptDummyJs.scene.getObjectByName("axisX" + (0, _machineDataJs.machine).size);
-    for(let index = 0; index < 64; index++)if (axisX.children[index].name.indexOf("Flange") != -1) axisX.children[index].position.y = (parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][0]) + parseFloat(pos)) / 1000;
-    if (_scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size) != undefined) {
-        if ((0, _machineDataJs.machine).numberAxis == 3) _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size).position.x = parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][0]) + parseFloat(pos) - 110;
-        if ((0, _machineDataJs.machine).numberAxis == 2) _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size).position.x = parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][0]) + parseFloat(pos) - 20;
-    }
-    if (_scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size) != undefined) _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size).position.x = parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][0]) + parseFloat(pos) - 60;
-}
-function setPositionAxisY(pos) {
-    console.log(pos);
-    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
-    for(let index = 0; index < 64; index++)if (axisY.children[index].name.indexOf("Flange") != -1) axisY.children[index].position.y = (parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][0]) + parseFloat(pos)) / 1000;
-}
-function setPositionAxisZ(pos) {
-    console.log(pos);
-    let migrationFactor = 1000;
-    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
-    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
-    //let posX       =  pos + limitSwitchOffset[0][0] / 1000
-    for(let index = 0; index < 64; index++)if (axisZ.children[index].name.indexOf("Flange") != -1) axisZ.children[index].position.y = -(parseFloat(pos) - parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[(0, _machineDataJs.machine).sizeType][4])) / 1000;
-    if (_scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size) != undefined) axisY.position.z = parseFloat(parseFloat(pos) - (0, _loadMachineAxis3Js.limitSwitchOffset)[(0, _machineDataJs.machine).sizeType][2] + 15);
-}
-function setPositionTool() {
-    let tool = _scriptDummyJs.scene.getObjectByName((0, _machineDataJs.machine).toolName);
-    tool.position.x = getPositionAxisX((0, _machineDataJs.machine).size);
-    tool.position.y = getPositionAxisY((0, _machineDataJs.machine).size);
-    tool.position.z = getPositionAxisZ((0, _machineDataJs.machine).size);
-    if ((0, _machineDataJs.machine).toolName == "Tool3") {
-        tool.position.x += -20;
-        tool.position.y += 40;
-        tool.position.z += 255;
-    }
-}
-function setPositionAxisXOffline(pos) {
-    console.log(pos);
-    let migrationFactor = 1000;
-    let axisX = _scriptDummyJs.scene.getObjectByName("axisX" + (0, _machineDataJs.machine).size);
-    for(let index = 0; index < 64; index++)if (axisX.children[index].name.indexOf("Flange") != -1) axisX.children[index].position.y = (parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][0]) + parseFloat(pos)) / 1000;
-}
-function setPositionAxisYOffline(pos) {
-    console.log(pos);
-    let migrationFactor = 1000;
-    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
-    for(let index = 0; index < 64; index++)if (axisY.children[index].name.indexOf("Flange") != -1) axisY.children[index].position.y = (parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[0][2]) + parseFloat(pos)) / 1000;
-}
-function setPositionAxisZOffline(pos) {
-    console.log(pos);
-    let migrationFactor = 1000;
-    let axisZ = _scriptDummyJs.scene.getObjectByName("axisZ" + (0, _machineDataJs.machine).size);
-    let axisY = _scriptDummyJs.scene.getObjectByName("axisY" + (0, _machineDataJs.machine).size);
-    //let posX       =  pos + limitSwitchOffset[0][0] / 1000
-    for(let index = 0; index < 64; index++)if (axisZ.children[index].name.indexOf("Flange") != -1) axisZ.children[index].position.y = -(parseFloat(pos) - parseFloat((0, _loadMachineAxis3Js.limitSwitchOffset)[(0, _machineDataJs.machine).sizeType][4])) / 1000;
-}
-function convertFlanchPos(pos, Axis) {
-    let flanchPos;
-    let migrationFactor = 1000;
-    switch(Axis){
-        case "X":
-            flanchPos = pos * migrationFactor - (0, _loadMachineAxis3Js.limitSwitchOffset)[(0, _machineDataJs.machine).sizeType][0];
-            break;
-        case "Y":
-            flanchPos = pos * migrationFactor - (0, _loadMachineAxis3Js.limitSwitchOffset)[(0, _machineDataJs.machine).sizeType][2];
-            break;
-        case "Z":
-            flanchPos = -(pos * migrationFactor) + (0, _loadMachineAxis3Js.limitSwitchOffset)[(0, _machineDataJs.machine).sizeType][4];
-            break;
-        default:
-            break;
-    }
-    return flanchPos;
-}
-
-},{"../../script_dummy.js":"eiRHJ","./declaration.js":"3bUg0","./loadMachineAxis3.js":"708yA","./machineData.js":"1Y1Z2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6whiV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "enableManualMove", ()=>enableManualMove);
-parcelHelpers.export(exports, "manualVel", ()=>manualVel);
-parcelHelpers.export(exports, "targetValueX", ()=>targetValueX);
-parcelHelpers.export(exports, "targetValueY", ()=>targetValueY);
-parcelHelpers.export(exports, "targetValueZ", ()=>targetValueZ);
-parcelHelpers.export(exports, "stopMovements", ()=>stopMovements);
-parcelHelpers.export(exports, "moveDirection", ()=>moveDirection);
-parcelHelpers.export(exports, "controllerView", ()=>controllerView);
-var _threeModuleJs = require("../../../build/three.module.js");
-var _scriptDummyJs = require("../../script_dummy.js");
-// import { offsetToolX, offsetToolY, offsetToolZ, 
-//         setTargetValueX,setTargetValueY,setTargetValueZ,
-//          targetValueX, targetValueY, targetValueZ } from '../ProgramFunctions/calculatePath.js';
-var _declarationJs = require("./declaration.js");
-var _generateFunctionsJs = require("../Helper/generateFunctions.js");
-var _machineDataJs = require("./machineData.js");
-var _moveCommandsJs = require("./moveCommands.js");
-let enableManualMove = false;
-let manualVel = parseInt(_declarationJs.controllerVel[0].innerHTML);
-let green = "#008000";
-let red = "#FF0000";
-let blue = "#0000FF";
-let axisHorizontal = "Y";
-let axisVerticel = "X";
-let buttonDirection, moveDirection;
-let controllerView = ()=>{
-    if (_declarationJs.controllerBox[0].style.display == "block") _declarationJs.controllerBox[0].style.display = "none";
-    else _declarationJs.controllerBox[0].style.display = "block";
-};
-//Set Point
-// DECL.stopMoveButton[0].onmousedown     = stopMovements;
-// Controller View                            
-// DECL.controllerView.onmousedown        = controllerView;
-// DECL.closeController[0].onmousedown    = controllerView;
-//Controller Mousedown Button Events
-_declarationJs.buttonDown[0].onmousedown = controllerMove;
-_declarationJs.buttonTop[0].onmousedown = controllerMove;
-_declarationJs.buttonRight[0].onmousedown = controllerMove;
-_declarationJs.buttonLeft[0].onmousedown = controllerMove;
-//Controller MoudeUp Button Events
-_declarationJs.buttonDown[0].onmouseup = stopMovements;
-_declarationJs.buttonTop[0].onmouseup = stopMovements;
-_declarationJs.buttonRight[0].onmouseup = stopMovements;
-_declarationJs.buttonLeft[0].onmouseup = stopMovements;
-//minus and plus Velocity
-_declarationJs.minusValue[0].onmousedown = changeVelocity;
-_declarationJs.plusValue[0].onmousedown = changeVelocity;
-//Turn Coordinate System
-_declarationJs.turnCoordinate[0].onmousedown = changeCoordinate;
-let targetValueX = 0;
-let targetValueY = 0;
-let targetValueZ = 0;
-let velX = 0;
-let velY = 0;
-let velZ = 0;
-function stopMovements() {
-    enableManualMove = false;
-}
-function controllerMove(event) {
-    enableManualMove = true;
-    targetValueX = (0, _machineDataJs.machine).positionX;
-    targetValueY = (0, _machineDataJs.machine).positionY;
-    targetValueZ = (0, _machineDataJs.machine).positionZ;
-    manualVel = parseInt(_declarationJs.controllerVel[0].innerHTML);
-    let velX = 0;
-    let velY = 0;
-    let velZ = 0;
-    let accelX = 0;
-    let accelY = 0;
-    let accelZ = 0;
-    axisHorizontal = _declarationJs.legendHorizontal[0].innerHTML;
-    axisVerticel = _declarationJs.legendVerticel[0].innerHTML;
-    buttonDirection = event.target.getAttribute("name");
-    //left
-    if (buttonDirection == "left") moveDirection = "-" + axisHorizontal;
-    //top
-    if (buttonDirection == "top") moveDirection = "+" + axisVerticel;
-    //right
-    if (buttonDirection == "right") moveDirection = "+" + axisHorizontal;
-    //down
-    if (buttonDirection == "down") moveDirection = "-" + axisVerticel;
-}
-function changeVelocity(event) {
-    let eventType = event.target.getAttribute("name");
-    manualVel = parseInt(_declarationJs.controllerVel[0].innerHTML);
-    if (eventType == "plus" && manualVel != 15) //Plus Button
-    _declarationJs.controllerVel[0].innerHTML = parseInt(manualVel + 1);
-    else if (eventType == "minus" && manualVel != 0) //Minus Button
-    _declarationJs.controllerVel[0].innerHTML = parseInt(manualVel - 1);
-    //DECL.controllerVel[0].innerHTML = eventType;
-    manualVel = _declarationJs.controllerVel[0].innerHTML;
-}
-function changeCoordinate() {
-    //if Verticel = X / Horizintal = Y
-    if (axisHorizontal == "Y" && axisVerticel == "X") {
-        axisHorizontal = "X";
-        _declarationJs.legendHorizontal[0].innerHTML = "X";
-        _declarationJs.legendHorizontal[0].style.color = red;
-        _declarationJs.rectangleHorizontal[0].style.backgroundColor = red;
-        _declarationJs.arrowHorizontal[0].style.borderColor = red;
-        axisVerticel = "Z";
-        _declarationJs.legendVerticel[0].innerHTML = "Z";
-        _declarationJs.legendVerticel[0].style.color = blue;
-        _declarationJs.rectangleVerticel[0].style.backgroundColor = blue;
-        _declarationJs.arrowVerticel[0].style.borderColor = blue;
-    //if Verticel = Z / Horizintal = X    
-    } else if (axisHorizontal == "X" && axisVerticel == "Z") {
-        axisHorizontal = "Y";
-        _declarationJs.legendHorizontal[0].innerHTML = "Y";
-        _declarationJs.legendHorizontal[0].style.color = green;
-        _declarationJs.rectangleHorizontal[0].style.backgroundColor = green;
-        _declarationJs.arrowHorizontal[0].style.borderColor = green;
-    // Set to default Value --> Verticel = Z / Horizintal = Z
-    } else {
-        axisVerticel = "X";
-        _declarationJs.legendVerticel[0].innerHTML = "X";
-        _declarationJs.legendVerticel[0].style.color = red;
-        _declarationJs.rectangleVerticel[0].style.backgroundColor = red;
-        _declarationJs.arrowVerticel[0].style.borderColor = red;
-    }
-}
-
-},{"../../../build/three.module.js":"2SpE9","../../script_dummy.js":"eiRHJ","./declaration.js":"3bUg0","../Helper/generateFunctions.js":"jrhvQ","./machineData.js":"1Y1Z2","./moveCommands.js":"kKGgk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fUhuK":[function(require,module,exports) {
+},{"../../../build/three.module.js":"2SpE9","./declaration.js":"3bUg0","../../script_dummy.js":"eiRHJ","../Helper/generateFunctions.js":"jrhvQ","../../../lib/jsm/loaders/GLTFLoader.js":"ceBpP","../../../lib/jsm/loaders/DRACOLoader.js":"ifF80","./moveCommands.js":"kKGgk","./machineData.js":"1Y1Z2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fUhuK":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "velocity", ()=>velocity);
@@ -39005,7 +39007,7 @@ async function typeWriter(text) {
     if (charIndex < text.length) {
         document.getElementById("explanation-content").innerHTML += text.charAt(charIndex);
         charIndex++;
-        if ((0, _scriptDummyJs.viewNumber) <= 1) setTimeout(()=>typeWriter(text), 0);
+        if ((0, _scriptDummyJs.viewNumber) <= -1) setTimeout(()=>typeWriter(text), 0);
         else typeWriter(text);
     } else if (contentIndex < contents.length - 1) document.getElementById("next-button").style.display = "inline-block";
     else document.getElementById("ok-button").style.display = "inline-block";
