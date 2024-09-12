@@ -644,6 +644,7 @@ var _startProgramJs = require("./dummy/BasicFunctions/startProgram.js");
 let viewNumber = 0;
 let nameConnection = [];
 let counter = 0;
+alert("hh");
 for(let index = 1; index <= 29; index++)for(let i = 2; i <= 30; i++){
     nameConnection[counter] = "L" + index + "." + i;
     counter++;
