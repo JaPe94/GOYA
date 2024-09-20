@@ -644,7 +644,6 @@ var _startProgramJs = require("./dummy/BasicFunctions/startProgram.js");
 let viewNumber = 0;
 let nameConnection = [];
 let counter = 0;
-alert("hy1");
 for(let index = 1; index <= 29; index++)for(let i = 2; i <= 30; i++){
     nameConnection[counter] = "L" + index + "." + i;
     counter++;
@@ -720,6 +719,7 @@ function createGraph() {
         transformControl.detach();
         _declarationJs.sliderContainer.style.display = "block";
         _declarationJs.startProgram.style.display = "block";
+        _declarationJs.nextStep.style.display = "none";
     }
     if (viewNumber == 3) {
         _declarationJs.explanationBox.style.backgroundColor = "green";
@@ -34303,7 +34303,7 @@ async function onPointerUp() {
     if (_scriptDummyJs.onDownPosition.distanceTo(_scriptDummyJs.onUpPosition) === 0) transformControl.detach();
 }
 
-},{"../../build/three.module.js":"2SpE9","../script_dummy.js":"eiRHJ","./BasicFunctions/declaration.js":"3bUg0","../../lib/jsm/loaders/FontLoader.js":"fnvp8","../../lib/jsm/geometries/TextGeometry.js":"lUl4B","./BasicFunctions/machineData.js":"1Y1Z2","./BasicFunctions/addPoint.js":"k38BJ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./BasicFunctions/controller.js":"6whiV"}],"1Y1Z2":[function(require,module,exports) {
+},{"../../build/three.module.js":"2SpE9","../script_dummy.js":"eiRHJ","./BasicFunctions/declaration.js":"3bUg0","../../lib/jsm/loaders/FontLoader.js":"fnvp8","../../lib/jsm/geometries/TextGeometry.js":"lUl4B","./BasicFunctions/machineData.js":"1Y1Z2","./BasicFunctions/addPoint.js":"k38BJ","./BasicFunctions/controller.js":"6whiV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1Y1Z2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "machineLoad", ()=>machineLoad);
@@ -38466,10 +38466,10 @@ function loadPart() {
     let loadergltf = new (0, _gltfloaderJs.GLTFLoader)();
     // Load a glTF resource.
     const dracoLoader = new (0, _dracoloaderJs.DRACOLoader)();
-    dracoLoader.setDecoderPath("../../lib/jsm/libs/draco/gltf/");
+    dracoLoader.setDecoderPath("https://cdn.jsdelivr.net/gh/mrdoob/three.js@dev/examples/jsm/libs/draco/gltf/");
     loadergltf.setDRACOLoader(dracoLoader);
     loadergltf.load(// resource URL
-    "./../image/part.glb", // called when the resource is loaded
+    "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/part.glb", // called when the resource is loaded
     function(glb) {
         let tool1 = glb.scene;
         _scriptDummyJs.floor.add(glb.scene);
@@ -38639,7 +38639,12 @@ async function programRun() {
                 for(let index = 0; index < _scriptDummyJs.cageTransit.children.length; index++)_scriptDummyJs.cageTransit.children[index].visible = false;
                 for(let index = 0; index < _scriptDummyJs.cageLines.children.length; index++)_scriptDummyJs.cageLines.children[index].visible = false;
                 for(let index = 0; index < _scriptDummyJs.cageText.children.length; index++)_scriptDummyJs.cageText.children[index].visible = false;
-                _declarationJs.nextStep.innerHTML = "Finish";
+                setTimeout(function() {
+                    (0, _explanationBoxJs.startTyping)((0, _explanationBoxJs.contentsPage4)); // Startet das Typing nach 5 Sekunden
+                }, 2000); // 5000 Millisekunden = 5 Sekunden
+                setTimeout(function() {
+                    window.location.reload();
+                }, 10000); // 5000 Millisekunden = 5 Sekunden
             }
             valueXReached = false;
             valueYReached = false;
@@ -38959,7 +38964,7 @@ let contentsPage2 = [
     {
         type: "image",
         content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Controller.png",
-        width: "60%"
+        width: "50%"
     },
     {
         type: "text",
@@ -38988,16 +38993,7 @@ let contentsPage3 = [
 let contentsPage4 = [
     {
         type: "text",
-        content: "Zuletzt soll jetzt das Programm abgefahren werden. Mit den Scrollbars oben rechts kann die Geschwindigkeit der Maschine udn die dicke der Klebspur einegstellt werden. "
-    },
-    {
-        type: "image",
-        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Program.png",
-        width: "90%"
-    },
-    {
-        type: "text",
-        content: "Mit 'Finish' k\xf6nnen Si die Preview Software beenden"
+        content: "Gl\xfcckwunsch zum erfolgreichen Programmiern einer Bewegungsbahn mit GOYA! "
     }
 ];
 let contentIndex = 0;
@@ -39056,8 +39052,17 @@ document.getElementById("ok-button").onclick = function() {
     document.getElementById("overlay").style.display = "none";
 };
 window.onload = function() {
-    startTyping(contentsPage1);
+    checkDevice(); // Führt die Überprüfung beim Laden der Seite aus
 };
+function checkDevice() {
+    var desktopContent = document.getElementById("desktop-content");
+    var mobileContent = document.getElementById("mobile-content");
+    if (window.innerWidth <= 968) {
+        // Wenn die Bildschirmbreite kleiner oder gleich 768px ist, wird der Mobile-Inhalt angezeigt
+        desktopContent.style.display = "none";
+        mobileContent.style.display = "block";
+    } else startTyping(contentsPage1);
+}
 
 },{"../../script_dummy.js":"eiRHJ","./declaration.js":"3bUg0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"crl2M":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
