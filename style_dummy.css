@@ -15,8 +15,18 @@
 body {
   font-family: Arial, sans-serif;
 }
+#desktop-content{
+  display: block
+}
 #image{
   width: 5px;
+}
+#mobile-content{
+  display: none;
+}
+#Mobile{
+  font-size: 18px;
+  color: white;
 }
 .cursor {
   display: inline-block;
@@ -58,7 +68,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #FFD000;
+  background: #424242;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,6 +80,25 @@ body {
   background-position: center; /* Zentriert das Bild */
   background-repeat: no-repeat; /* Verhindert, dass das Bild wiederholt wird */
 }
+#overlay-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #424242;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+#overlay-mobile {
+  background-image: url('https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/GOYA%20Hintergrund.png'); /* Pfad zu deinem Bild */
+  background-size: cover; /* Passt das Bild proportional an den Bildschirm an */
+  background-position: center; /* Zentriert das Bild */
+  background-repeat: no-repeat; /* Verhindert, dass das Bild wiederholt wird */
+}
+
 #Start-Program{
   font:700 2.5vh'Roboto Slab', sans-serif;
   color: white;
@@ -87,13 +116,11 @@ body {
 }
 #explanation-box {
   background: transparent;
-  font-size: 18px;
+  font-size: 16px;
   color: black;
   padding:5px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   width: 65%;
-  height: 80%;
+  height: 70%;
   text-align: center;
   position: relative;
   display: flex;
@@ -105,11 +132,11 @@ body {
 #error{
   display: none;
 }
-#Icon-WAM {
+.Icon-WAM {
   position: absolute;
   top: 10px;
   right: 30px;
-  width: 50px;
+  width: 150px;
   height: 50px;
 }
 
@@ -129,14 +156,15 @@ body {
 }
 
 #next-button, #ok-button {
-  padding: 10px 20px;
-  font-size: 1em;
+  position: absolute;
+  top: 80%;
+  padding: 15px 20px;
+  font-size: 1.2em;
   background-color: #FFD000;
   color: black;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
-  margin-top: 20px;
   align-self: center;
   
 }
