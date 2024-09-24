@@ -1029,7 +1029,7 @@ async function UpdateText() {
         }
     }
 }
-async function update() {
+function update() {
     let clock = new _threeModuleJs.Clock(); // Erstellung Clock
     renderer.render(scene, camera); //Starten des Renderer
     scene.traverse(function(child) {});
@@ -38568,6 +38568,7 @@ let velocity = 0.2;
 let differenceX;
 let differenceY;
 let differenceZ;
+let clock = new _threeModuleJs.Clock();
 function setCounterPath(value) {
     counterPath = value;
 }
@@ -38620,6 +38621,8 @@ function addTubeToPosition(x, y, z, scene) {
     }
 }
 async function programRun() {
+    let delta = clock.getDelta(); // Verstrichene Zeit seit dem letzten Aufruf
+    velocity = parseFloat(12 * delta);
     //Offline==================================================================
     if (0, _startProgramJs.enableMove) {
         (0, _machineDataJs.machine).positionX = (0, _moveCommandsJs.getPositionAxisX)(); // + offsetToolX;
@@ -38745,33 +38748,33 @@ async function programRun() {
     if (0, _controllerJs.enableManualMove) {
         //X
         if ((0, _controllerJs.moveDirection) == "+X" && (0, _machineDataJs.machine).positionX <= (0, _machineDataJs.machine).limitSwitchXMax) {
-            velX = (0, _controllerJs.manualVel);
-            (0, _moveCommandsJs.moveAxisOfflineX)("pos", velX / 15);
+            velX = parseFloat((0, _controllerJs.manualVel) * delta);
+            (0, _moveCommandsJs.moveAxisOfflineX)("pos", velX);
         }
         //-X
         if ((0, _controllerJs.moveDirection) == "-X" && (0, _machineDataJs.machine).positionX >= (0, _machineDataJs.machine).limitSwitchXMin) {
-            velX = (0, _controllerJs.manualVel);
-            (0, _moveCommandsJs.moveAxisOfflineX)("neg", velX / 15);
+            velX = parseFloat((0, _controllerJs.manualVel) * delta);
+            (0, _moveCommandsJs.moveAxisOfflineX)("neg", velX);
         }
         //Y
         if ((0, _controllerJs.moveDirection) == "+Y" && (0, _machineDataJs.machine).positionY <= (0, _machineDataJs.machine).limitSwitchYMax) {
-            velY = (0, _controllerJs.manualVel);
-            (0, _moveCommandsJs.moveAxisOfflineY)("pos", velY / 15);
+            velY = parseFloat((0, _controllerJs.manualVel) * delta);
+            (0, _moveCommandsJs.moveAxisOfflineY)("pos", velY);
         }
         //-Y
         if ((0, _controllerJs.moveDirection) == "-Y" && (0, _machineDataJs.machine).positionY >= (0, _machineDataJs.machine).limitSwitchYMin) {
-            velY = (0, _controllerJs.manualVel);
-            (0, _moveCommandsJs.moveAxisOfflineY)("neg", velY / 15);
+            velY = parseFloat((0, _controllerJs.manualVel) * delta);
+            (0, _moveCommandsJs.moveAxisOfflineY)("neg", velY);
         }
         //Z
         if ((0, _controllerJs.moveDirection) == "+Z" && (0, _machineDataJs.machine).positionZ <= (0, _machineDataJs.machine).limitSwitchZMax) {
-            velZ = (0, _controllerJs.manualVel);
-            (0, _moveCommandsJs.moveAxisOfflineZ)("pos", velZ / 15);
+            velZ = parseFloat((0, _controllerJs.manualVel) * delta);
+            (0, _moveCommandsJs.moveAxisOfflineZ)("pos", velZ);
         }
         //-Z
         if ((0, _controllerJs.moveDirection) == "-Z" && (0, _machineDataJs.machine).positionZ >= (0, _machineDataJs.machine).limitSwitchZMin) {
-            velZ = (0, _controllerJs.manualVel);
-            (0, _moveCommandsJs.moveAxisOfflineZ)("neg", velZ / 15);
+            velZ = parseFloat((0, _controllerJs.manualVel) * delta);
+            (0, _moveCommandsJs.moveAxisOfflineZ)("neg", velZ);
         }
     }
     (0, _machineDataJs.machine).positionX = (0, _moveCommandsJs.getPositionAxisX)();
@@ -38932,68 +38935,66 @@ var _scriptDummyJs = require("../../script_dummy.js");
 var _declarationJs = require("./declaration.js");
 let contents = [
     {
-        type: "text",
-        content: "Willkommen bei GOYA Dynamics. GOYA erm\xf6glicht die Konfiguration, Steuerung und Programmierung von Motoren in verschiedensten Anwendungen, wie 3D-Druck, CNC oder auch Linearprozessen. Dabei werden dem Nutzer komplexe Arbeitsschritte abgenommen und durch ein benutzerfreundliches Interface ersetzt. In der folgenden Software-Preview erhalten Sie Einblicke in die Funtkionen und Programmstrukturen des Systems am Beispiel einer Klebevorrichtung."
-    },
-    {
         type: "image",
-        content: "https://github.com/JaPe94/GOYA/blob/main/Controller.PNG",
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page1.PNG",
         width: 100,
         height: 200
     }
 ];
 let contentsPage1 = [
     {
-        type: "text",
-        content: "Willkommen bei GOYA Dynamics. GOYA erm\xf6glicht die Konfiguration, Steuerung und Programmierung von Motoren in verschiedensten Anwendungen, wie 3D-Druck, CNC oder auch Linearprozessen. Dabei werden dem Nutzer komplexe Arbeitsschritte abgenommen und durch ein benutzerfreundliches Interface ersetzt."
+        type: "image",
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page1.PNG",
+        width: 600,
+        height: 300
     },
     {
-        type: "text",
-        content: "In der folgenden Software-Preview erhalten Sie Einblicke in die Funktionen und Programmstrukturen des Systems am Beispiel einer automatisierten Klebevorrichtung."
+        type: "image",
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page2.PNG",
+        width: 600,
+        height: 200
     },
     {
-        type: "text",
-        content: "Die erste Aufgabenstellung ist es ein erstes Gef\xfchl f\xfcr die 3D Visualisierung von GOYA zu bekommen. Der Zoom der 3D Szene kann mittels 'STRG' und '+' oder '-' oder allternativ mit dem Mausrad gesteuert werden. Zudem kann die Szene durch halten der linken Maustaste intuitiv gedreht werden. Sobald sie sich mit der Steuerung vertraut gemacht haben k\xf6nnen sie auf den Button 'NextStep' dr\xfccken um zum n\xe4chsten Lernabschnitt zu kommen"
+        type: "image",
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page3.PNG",
+        width: 600,
+        height: 350
     }
 ];
 let contentsPage2 = [
     {
-        type: "text",
-        content: "Im N\xe4chsten Schritt soll die Klebevorrichtung mittels eines Controller bewegt werden. In der folgenden Grafik wird die Handhabung des Controllers beschrieben"
+        type: "image",
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page4.PNG",
+        width: 600,
+        height: 350
     },
     {
         type: "image",
-        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Controller.png",
-        width: "50%"
-    },
-    {
-        type: "text",
-        content: "Wenn Sie sich mit dem manuellen Steuern der Maschine vertraut gemacht haben, k\xf6nnen Sie mit 'Next Step' zur n\xe4chsten Punkt springen."
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page5.PNG",
+        width: 1100,
+        height: 400
     }
 ];
 let contentsPage3 = [
     {
-        type: "text",
-        content: "Im N\xe4chsten Schritt soll der Graph der sp\xe4teren Klebespur auf einem Bauteil modifizirt werden. Dies kann mit dem Drag&Drop \xfcber den den ausgew\xe4hlten Punkt erfolgen. "
-    },
-    {
-        type: "text",
-        content: "Zu beachten ist, dass der Graph innerhalb des m\xf6glichen Verfahrbereichs der Maschine liegt, dieser wird vom grauen Qudrat symbolisiert. "
+        type: "image",
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page6.PNG",
+        width: 1000,
+        height: 350
     },
     {
         type: "image",
-        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Graph.png",
-        width: "90%"
-    },
-    {
-        type: "text",
-        content: "Wenn Sie sich mit dem Graph der Maschine zufrieden sind, k\xf6nnen Sie mit 'Next Step' zum n\xe4chsten Punkt springen."
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page7.PNG",
+        width: 700,
+        height: 200
     }
 ];
 let contentsPage4 = [
     {
-        type: "text",
-        content: "Gl\xfcckwunsch zum erfolgreichen Programmiern einer Bewegungsbahn mit GOYA! "
+        type: "image",
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page8.PNG",
+        width: 800,
+        height: 350
     }
 ];
 let contentIndex = 0;
