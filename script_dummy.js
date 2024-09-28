@@ -685,6 +685,16 @@ function setCounterGeneratedTransitions(value) {
 function setCounterGeneratedBases(value) {
     counterGeneratedBases = value;
 }
+document.getElementById("submitPassword").addEventListener("click", function() {
+    const password = document.getElementById("passwordInput").value;
+    const correctPassword = "goya_2024"; // Hier das richtige Passwort festlegen
+    if (password === correctPassword) document.getElementById("passwordModal").style.display = "none"; // Modal ausblenden
+    else document.getElementById("passwordError").style.display = "block"; // Fehler anzeigen
+});
+// Optional: Enter-Taste für die Passwortüberprüfung nutzen
+document.getElementById("passwordInput").addEventListener("keyup", function(event) {
+    if (event.key === "Enter") document.getElementById("submitPassword").click();
+});
 _declarationJs.controllerBox[0].style.display = "none";
 // loadMachine250Axis3();
 _declarationJs.nextStep.onmousedown = createGraph;
@@ -694,6 +704,9 @@ const onUpPosition = new _threeModuleJs.Vector2();
 const onDownPosition = new _threeModuleJs.Vector2();
 let a = 0;
 function createGraph() {
+    camera.position.x = 1200; //Position X der Kamera
+    camera.position.y = 900; //Position Y der Kamera
+    camera.position.z = 50; //Position Z der Kamera
     if (viewNumber == 0) {
         (0, _explanationBoxJs.startTyping)((0, _explanationBoxJs.contentsPage2));
         _declarationJs.controllerBox[0].style.display = "block";
@@ -962,8 +975,8 @@ function main() {
     //==============================Generate Camera=====================================================
     camera = new _threeModuleJs.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 100000 // alles was mehr als 1000 entfernt wird, wird abgeschnitten
     );
-    camera.position.x = 800; //Position X der Kamera
-    camera.position.y = 700; //Position Y der Kamera
+    camera.position.x = 1200; //Position X der Kamera
+    camera.position.y = 900; //Position Y der Kamera
     camera.position.z = 50; //Position Z der Kamera
     const helpers = new _threeModuleJs.GridHelper(1000, 100);
     helpers.position.y = 0;
@@ -38622,7 +38635,7 @@ function addTubeToPosition(x, y, z, scene) {
 }
 async function programRun() {
     let delta = clock.getDelta(); // Verstrichene Zeit seit dem letzten Aufruf
-    velocity = parseFloat(12 * delta);
+    velocity = parseFloat(_declarationJs.sliderValue[1].value * 1.3 * delta);
     //Offline==================================================================
     if (0, _startProgramJs.enableMove) {
         (0, _machineDataJs.machine).positionX = (0, _moveCommandsJs.getPositionAxisX)(); // + offsetToolX;
@@ -38643,8 +38656,8 @@ async function programRun() {
                 for(let index = 0; index < _scriptDummyJs.cageLines.children.length; index++)_scriptDummyJs.cageLines.children[index].visible = false;
                 for(let index = 0; index < _scriptDummyJs.cageText.children.length; index++)_scriptDummyJs.cageText.children[index].visible = false;
                 setTimeout(function() {
-                    (0, _explanationBoxJs.startTyping)((0, _explanationBoxJs.contentsPage4)); // Startet das Typing nach 5 Sekunden
-                }, 2000); // 5000 Millisekunden = 5 Sekunden
+                    (0, _explanationBoxJs.startTyping)((0, _explanationBoxJs.contentsPage5)); // Startet das Typing nach 5 Sekunden
+                }, 1000); // 5000 Millisekunden = 5 Sekunden
                 setTimeout(function() {
                     window.location.reload();
                 }, 10000); // 5000 Millisekunden = 5 Sekunden
@@ -38697,8 +38710,8 @@ async function programRun() {
         if ((0, _machineDataJs.machine).positionZ > (0, _machineDataJs.machine).limitSwitchZMax || (0, _machineDataJs.machine).positionZ < (0, _machineDataJs.machine).limitSwitchZMin) outsideBox = true;
         if (outsideBox == true) {
             (0, _startProgramJs.setEnableMove)(false);
-            _declarationJs.explanationBox.style.backgroundColor = "#F44336";
-            _declarationJs.error.style.display = "block";
+            // DECL.explanationBox.style.backgroundColor = '#F44336';
+            // DECL.error.style.display                  = 'block';
             (0, _moveCommandsJs.setPositionAxisX)(100);
             (0, _generateFunctionsJs.wait)(100);
             _scriptDummyJs.update();
@@ -38715,32 +38728,9 @@ async function programRun() {
             // MAIN.setCounterGeneratedTransitions(-1);
             let a = _scriptDummyJs.floor.getObjectByName("cageMachine");
             a.remove(a.children[1]);
-            // a = MAIN.floor.getObjectByName('cageMachine');
-            // a.remove(a.children[0]);      
-            // a = MAIN.floor.getObjectByName('cageText');
-            // while(a.children[0] != undefined){
-            //     a.remove(a.children[0]);    
-            // }   
-            // a = MAIN.floor.getObjectByName('cageTransit');
-            // while(a.children[0] != undefined){
-            //     a.remove(a.children[0]);    
-            // } 
-            // MAIN.update();
-            // addSinglePointToGraph(0,-50,-25);
-            // MAIN.update();
-            // addPointToGraph(0, 40,-50,-25);
-            // MAIN.update();
-            // addPointToGraph(1, 72.5,0,-25);
-            // MAIN.update();
-            // addPointToGraph(2, 40,50,-25);
-            // MAIN.update();
-            // addPointToGraph(3, 0,50,-25);
-            // MAIN.update();
-            // addPointToGraph(4, -40,0,-25);
-            //loadPart();
             index = 0;
             indexPath = 0;
-            (0, _explanationBoxJs.startTyping)((0, _explanationBoxJs.contents));
+            (0, _explanationBoxJs.startTyping)((0, _explanationBoxJs.contentsPage6));
             outsideBox = false;
             pointsArray.splice(0, pointsArray.length);
         }
@@ -38929,6 +38919,8 @@ parcelHelpers.export(exports, "contentsPage1", ()=>contentsPage1);
 parcelHelpers.export(exports, "contentsPage2", ()=>contentsPage2);
 parcelHelpers.export(exports, "contentsPage3", ()=>contentsPage3);
 parcelHelpers.export(exports, "contentsPage4", ()=>contentsPage4);
+parcelHelpers.export(exports, "contentsPage5", ()=>contentsPage5);
+parcelHelpers.export(exports, "contentsPage6", ()=>contentsPage6);
 parcelHelpers.export(exports, "typeWriter", ()=>typeWriter);
 parcelHelpers.export(exports, "startTyping", ()=>startTyping);
 var _scriptDummyJs = require("../../script_dummy.js");
@@ -38936,9 +38928,9 @@ var _declarationJs = require("./declaration.js");
 let contents = [
     {
         type: "image",
-        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page1.PNG",
-        width: 100,
-        height: 200
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page9.PNG",
+        width: 200,
+        height: 300
     }
 ];
 let contentsPage1 = [
@@ -38971,16 +38963,16 @@ let contentsPage2 = [
     {
         type: "image",
         content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page5.PNG",
-        width: 1100,
-        height: 400
+        width: 900,
+        height: 330
     }
 ];
 let contentsPage3 = [
     {
         type: "image",
         content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page6.PNG",
-        width: 1000,
-        height: 350
+        width: 800,
+        height: 280
     },
     {
         type: "image",
@@ -38995,6 +38987,22 @@ let contentsPage4 = [
         content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page8.PNG",
         width: 800,
         height: 350
+    }
+];
+let contentsPage5 = [
+    {
+        type: "image",
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page10.PNG",
+        width: 600,
+        height: 300
+    }
+];
+let contentsPage6 = [
+    {
+        type: "image",
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page9.PNG",
+        width: 700,
+        height: 180
     }
 ];
 let contentIndex = 0;
@@ -39083,7 +39091,7 @@ function changeSlideGlue() {
     (0, _runProgramJs.setGlueThickness)(this.value / 10);
 }
 function changeSlideVel() {
-    _declarationJs.sliderVelocity.innerHTML = this.value + " m/s";
+    _declarationJs.sliderVelocity.innerHTML = this.value + " mm/s";
     (0, _runProgramJs.setVelocity)(this.value / 40);
 }
 
