@@ -161,7 +161,7 @@ body {
 
 #next-button, #ok-button {
   position: absolute;
-  top: 80%;
+  top: 85%;
   padding: 10px 15px;
   font-size: 1.2em;
   background-color: #FFD000;
