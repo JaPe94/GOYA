@@ -1013,6 +1013,7 @@ function main() {
     document.getElementById("webgl").appendChild(renderer.domElement); // Renderer im Code angehängt
     controls = new (0, _orbitControlsJs.OrbitControls)(camera, renderer.domElement) //Funktion zum frei drehen der Animation
     ;
+    controls.target = new _threeModuleJs.Vector3(0, 60, 0);
     transformControl = new (0, _transformControlsJs.TransformControls)(camera, renderer.domElement);
     transformControl.addEventListener("change", render);
     transformControl.addEventListener("dragging-changed", function(event) {
@@ -38948,9 +38949,9 @@ let contentsPage1 = [
     },
     {
         type: "image",
-        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page3.PNG",
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page3_.PNG",
         width: 600,
-        height: 350
+        height: 310
     }
 ];
 let contentsPage2 = [
@@ -38976,7 +38977,7 @@ let contentsPage3 = [
     },
     {
         type: "image",
-        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page7.PNG",
+        content: "https://cdn.jsdelivr.net/gh/JaPe94/GOYA@main/Page7_.PNG",
         width: 700,
         height: 200
     }
