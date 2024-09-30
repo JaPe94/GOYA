@@ -118,15 +118,19 @@ body {
   background: transparent;
   font-size: 16px;
   color: black;
-  padding:5px;
+  padding: 5px;
   width: 75%;
   height: 80%;
   text-align: center;
-  position: relative;
+  position: fixed; /* Ändere position auf fixed, um das Element im Fenster zu fixieren */
+  top: 50%; /* Setzt die obere Kante des Elements auf die Mitte des Bildschirms */
+  left: 50%; /* Setzt die linke Kante des Elements auf die Mitte des Bildschirms */
+  transform: translate(-50%, -50%); /* Verschiebt das Element, um es tatsächlich in die Mitte zu bringen */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   opacity: 1;
+  z-index: 9999; /* Optional: Stellt sicher, dass das Element über anderen Elementen liegt */
 }
 
 #error{
@@ -158,7 +162,7 @@ body {
 #next-button, #ok-button {
   position: absolute;
   top: 80%;
-  padding: 15px 20px;
+  padding: 10px 15px;
   font-size: 1.2em;
   background-color: #FFD000;
   color: black;
