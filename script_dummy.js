@@ -38661,7 +38661,7 @@ async function programRun() {
                 }, 1000); // 5000 Millisekunden = 5 Sekunden
                 setTimeout(function() {
                     window.location.reload();
-                }, 10000); // 5000 Millisekunden = 5 Sekunden
+                }, 2000); // 5000 Millisekunden = 5 Sekunden
             }
             valueXReached = false;
             valueYReached = false;
